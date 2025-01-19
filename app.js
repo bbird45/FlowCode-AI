@@ -22,5 +22,5 @@ app.listen(port, () => {
 });
 }
 
-module.exports = app; // สำคัญสำหรับ Vercel Dev
+module.exports = app; 
 

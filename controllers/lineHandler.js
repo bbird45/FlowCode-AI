@@ -4,6 +4,7 @@ const { getflowchartFromDB } = require('../database/database');
 const { getPseudocodeFromDB } = require('../database/database');
 const { getQuizFromDB } = require('../database/database');
 const { getQuestionFromDB } = require('../database/database');
+const { getadminFromDB } = require('../database/database');
 
 // ฟังก์ชันจัดการกับ event ที่ได้รับจาก LINE
 async function handleEvent(event, intentsData) {
@@ -879,6 +880,25 @@ async function handleEvent(event, intentsData) {
       
           await client.replyMessage(event.replyToken, { type: 'text', text: quesList });
           return { status: 'Success', response: quesList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'admin') {
+        const admin = await getadminFromDB();
+        
+        const Admin = admin.filter(ad => ad.admin_id && ad.admin_id === 1);
+      
+        if (admin.length > 0) {
+          const adminList = Admin.map(ad => 
+              `📘 ${ad.admin_name}\n🔗 ${ad.admin_url}`
+          ).join('\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: adminList });
+          return { status: 'Success', response: adminList };
         } else {
           await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
           return { status: 'No' };
