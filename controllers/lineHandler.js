@@ -696,7 +696,7 @@ async function handleEvent(event, intentsData) {
       
         if (quizion.length > 0) {
           const quizList = Quiz.map(quiz => 
-              `📝 ${quiz.Quiz_name}\n🔗 ${quiz.Quiz_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📝 ${quiz.Quiz_name}\n🔗 ${quiz.Quiz_link}\n───── ⋆⋅☆⋅⋆ ─────`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: quizList });
