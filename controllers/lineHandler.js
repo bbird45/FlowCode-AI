@@ -369,6 +369,185 @@ async function handleEvent(event, intentsData) {
       }
 
 //-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'flowId18') {
+        const flowchart = await getflowchartFromDB();
+        const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 18);
+      
+        if (Flowchart.length > 0) {
+          const flowchartList = Flowchart.map(flow => 
+              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
+          return { status: 'Success', response: flowchartList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'flowId19') {
+        const flowchart = await getflowchartFromDB();
+        const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 19);
+      
+        if (Flowchart.length > 0) {
+          const flowchartList = Flowchart.map(flow => 
+              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
+          return { status: 'Success', response: flowchartList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'flowId20') {
+        const flowchart = await getflowchartFromDB();
+        const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 20);
+      
+        if (Flowchart.length > 0) {
+          const flowchartList = Flowchart.map(flow => 
+              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
+          return { status: 'Success', response: flowchartList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'flowId21') {
+        const flowchart = await getflowchartFromDB();
+        const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 21);
+      
+        if (Flowchart.length > 0) {
+          const flowchartList = Flowchart.map(flow => 
+              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
+          return { status: 'Success', response: flowchartList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'flowId22') {
+        const flowchart = await getflowchartFromDB();
+        const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 22);
+      
+        if (Flowchart.length > 0) {
+          const flowchartList = Flowchart.map(flow => 
+              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
+          return { status: 'Success', response: flowchartList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'flowId23') {
+        const flowchart = await getflowchartFromDB();
+        const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 23);
+      
+        if (Flowchart.length > 0) {
+          const flowchartList = Flowchart.map(flow => 
+              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
+          return { status: 'Success', response: flowchartList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'flowId24') {
+        const flowchart = await getflowchartFromDB();
+        const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 24);
+      
+        if (Flowchart.length > 0) {
+          const flowchartList = Flowchart.map(flow => 
+              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
+          return { status: 'Success', response: flowchartList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'flowId25') {
+        const flowchart = await getflowchartFromDB();
+        const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 25);
+      
+        if (Flowchart.length > 0) {
+          const flowchartList = Flowchart.map(flow => 
+              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
+          return { status: 'Success', response: flowchartList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'flowId26') {
+        const flowchart = await getflowchartFromDB();
+        const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 26);
+      
+        if (Flowchart.length > 0) {
+          const flowchartList = Flowchart.map(flow => 
+              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
+          return { status: 'Success', response: flowchartList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'flowId27') {
+        const flowchart = await getflowchartFromDB();
+        const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 27);
+      
+        if (Flowchart.length > 0) {
+          const flowchartList = Flowchart.map(flow => 
+              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
+          return { status: 'Success', response: flowchartList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'pseudoId1') {
         const pseudocode = await getPseudocodeFromDB();
         
