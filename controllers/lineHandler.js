@@ -375,7 +375,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🚀 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -393,7 +393,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `⚙️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -411,7 +411,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📥📤 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -429,7 +429,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `⚖️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -447,7 +447,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📄 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -465,7 +465,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `⌨️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -483,7 +483,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🖥️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -501,7 +501,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🌐 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -519,7 +519,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🔘 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -529,6 +529,7 @@ async function handleEvent(event, intentsData) {
           return { status: 'No' };
         }
       }
+
 //-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'flowId27') {
         const flowchart = await getflowchartFromDB();
@@ -536,7 +537,25 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔍 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `➡️⬅️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
+          return { status: 'Success', response: flowchartList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'flowId4567') {
+        const flowchart = await getflowchartFromDB();
+        const Flowchart = flowchart.filter(flow => flow.flow_id === 14 || flow.flow_id === 15 || flow.flow_id === 16 || flow.flow_id === 17);
+      
+        if (Flowchart.length > 0) {
+          const flowchartList = Flowchart.map(flow => 
+              `➡️⬅️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -1082,6 +1101,50 @@ async function handleEvent(event, intentsData) {
           await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
           return { status: 'No' };
         }
+      }
+
+//-------------------------------------------------------------------------------------------------------------
+        if (matchedIntent.intent_name === 'คำแนะนำ') {
+          const messageText = `✨ คำแนะนำ
+      🔍  พิมพ์ค้นหาอย่างไร? นี้คือตัวอย่างการพิมพ์คำค้นหา 
+      ─── ──── ───── ──── ───── ──── 
+      🔍 พิมพ์ค้นหารหัสเทียม (Pseudo-code) คืออะไร?
+      📜 "รหัสเทียม" 
+      ─── ──── ───── ──── ───── ──── 
+      🔍 พิมพ์ค้นหาประโยชน์ของการเขียนรหัสเทียม
+      📖  "ประโยชน์รหัสเทียม"
+      ─── ──── ───── ──── ───── ────
+      🔍 พิมพ์ค้นหาหลักการเขียนรหัสเทียม
+      📝  "หลักการรหัสเทียม"
+      ─── ──── ───── ──── ───── ──── 
+      🔍 พิมพ์ค้นหาตัวอย่างการเขียนรหัสเทียม
+      🖥️ "ตัวอย่างรหัสเทียม"
+      ─── ──── ───── ──── ───── ────
+      🔍 พิมพ์ค้นหาความหมายรหัสเทียม
+      📚 "ความหมายรหัสเทียม"
+      ─── ──── ───── ──── ───── ────
+      🔍  พิมพ์ค้นหาผังงาน (Flowchart) คืออะไร?
+      📜 "ผังงาน"
+      ─── ──── ───── ──── ───── ────
+      🔍 พิมพ์ค้นหาประโยชน์ของผังงาน
+      📖 "ประโยชน์ผังงาน"
+      ─── ──── ───── ──── ───── ────
+      🔍 พิมพ์ค้นหาสัญลักษณ์ที่ใช้ในผังงาน
+      🔹 "สัญลักษณ์ผังงาน"
+      ─── ──── ───── ──── ───── ────
+      🔍 พิมพ์ค้นหาตัวอย่างการเขียนผังงาน
+      🔄 "ตัวอย่างผังงาน" 
+      ─── ──── ───── ──── ───── ────
+      🔍 พิมพ์ค้นหา Start/Terminator คืออะไร
+      🚀 "Start 
+          Terminator"
+      ─── ──── ───── ──── ───── ────
+
+      ✨นี้คือการค้นหาเบื้องต้นที่พบบ่อย
+      `;
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: messageText });
+          return { status: 'Success', response: messageText };
       }
       
 //-----------------------------------------------------------------------------------------------------------------------------
