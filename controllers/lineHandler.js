@@ -77,7 +77,7 @@ if (matchedIntent.intent_name === 'flowId3') {
 
   if (Flowchart.length > 0) {
       const flowchartList = Flowchart.map(flow => 
-          `🌐 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
+          `🌐 ${flow.flow_name}\n📖 ${flow.flow_description}`
       ).join('\n\n');
 
       // ส่งข้อความพร้อมภาพ
