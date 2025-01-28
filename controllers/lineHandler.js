@@ -77,19 +77,20 @@ if (matchedIntent.intent_name === 'flowId3') {
 
   if (Flowchart.length > 0) {
       const flowchartList = Flowchart.map(flow => 
-          `🌐 ${flow.flow_name}\n📖 ${flow.flow_description}`
+          `🌐 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
       ).join('\n\n');
 
-      // ส่งข้อความพร้อมภาพ
-      await client.replyMessage(event.replyToken, [
+      // ส่งข้อความพร้อมภาพหลายภาพ
+      const messages = [
           { type: 'text', text: flowchartList }, // ส่งข้อความ
-          { 
-              type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, // URL ของภาพ
-              previewImageUrl: Flowchart[0].flow_url // URL ของภาพตัวอย่าง
-          }
-      ]);
+          ...Flowchart.map(flow => ({
+              type: 'image',
+              originalContentUrl: flow.flow_url, // URL ของภาพ
+              previewImageUrl: flow.flow_url // URL ของภาพตัวอย่าง
+          }))
+      ];
 
+      await client.replyMessage(event.replyToken, messages);
       return { status: 'Success', response: flowchartList };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
