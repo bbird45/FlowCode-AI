@@ -69,25 +69,32 @@ async function handleEvent(event, intentsData) {
       }
 
 //-----------------------------------------------------------------------------------------------------------------------------
-if (matchedIntent.intent_name === 'flowId3') {
+if (matchedIntent.intent_name === 'flowId3') {  // ตรวจสอบ intent_name
   const flowchart = await getflowchartFromDB();
 
   // ฟิลเตอร์หาผังงานระบบ
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 3);
 
   if (Flowchart.length > 0) {
+      // สร้างรายการข้อความ
       const flowchartList = Flowchart.map(flow => 
           `🌐 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
       ).join('\n\n');
 
+      // แยก URL ออกเป็นหลายๆ อัน
+      const flowImages = Flowchart.map(flow => {
+          const urls = flow.flow_url.split(','); // แยก URL ที่คั่นด้วยเครื่องหมาย , 
+          return urls.map(url => ({
+              type: 'image',
+              originalContentUrl: url.trim(), // URL ของภาพ
+              previewImageUrl: url.trim() // URL ของภาพตัวอย่าง
+          }));
+      }).flat(); // ใช้ .flat() เพื่อให้รวมเป็น array เดียว
+
       // ส่งข้อความพร้อมภาพหลายภาพ
       const messages = [
           { type: 'text', text: flowchartList }, // ส่งข้อความ
-          ...Flowchart.map(flow => ({
-              type: 'image',
-              originalContentUrl: flow.flow_url, // URL ของภาพ
-              previewImageUrl: flow.flow_url // URL ของภาพตัวอย่าง
-          }))
+          ...flowImages // ส่งภาพจาก URL ที่แยกออก
       ];
 
       await client.replyMessage(event.replyToken, messages);
@@ -97,6 +104,7 @@ if (matchedIntent.intent_name === 'flowId3') {
       return { status: 'No' };
   }
 }
+
 
 //-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'flowId4') {
