@@ -37,7 +37,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `📘 ${flow.flow_name}\n🔗 ${flow.flow_url}`
+              `📘 ${flow.flow_name}\n🔗 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
