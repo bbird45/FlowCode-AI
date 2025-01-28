@@ -738,18 +738,25 @@ if (matchedIntent.intent_name === 'flowId29') {
 //-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId30') {
   const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 30);
+  const Flowchart = flowchart.filter(flow => flow.flow_id === 3 || flow.flow_id === 4 );
 
   if (Flowchart.length > 0) {
-    const flowchartList = Flowchart.map(flow => 
-        `💻 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
-    ).join('\n\n');
+      // แยก URL ออกเป็นหลายๆ อัน
+      const flowImages = Flowchart.map(flow => {
+          const urls = flow.flow_url.split(','); // แยก URL ที่คั่นด้วยเครื่องหมาย , 
+          return urls.map(url => ({
+              type: 'image',
+              originalContentUrl: url.trim(), // URL ของภาพ
+              previewImageUrl: url.trim() // URL ของภาพตัวอย่าง
+          }));
+      }).flat(); // ใช้ .flat() เพื่อให้รวมเป็น array เดียว
 
-    await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
-    return { status: 'Success', response: flowchartList };
+      // ส่งภาพหลายๆ อัน
+      await client.replyMessage(event.replyToken, flowImages);
+      return { status: 'Success', response: 'Sent images successfully' };
   } else {
-    await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-    return { status: 'No' };
+      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+      return { status: 'No' };
   }
 }
 
