@@ -396,19 +396,15 @@ if (matchedIntent.intent_name === 'flowId17') {  // ตรวจสอบ intent
           }));
       }).flat(); // ใช้ .flat() เพื่อให้รวมเป็น array เดียว
 
-      // ส่งข้อความพร้อมภาพหลายภาพ
-      const messages = [
-          { type: 'text', text: flowchartList }, // ส่งข้อความ
-          ...flowImages // ส่งภาพจาก URL ที่แยกออก
-      ];
-
-      await client.replyMessage(event.replyToken, messages);
-      return { status: 'Success', response: flowchartList };
+      // ส่งภาพหลายๆ อัน
+      await client.replyMessage(event.replyToken, flowImages);
+      return { status: 'Success', response: 'Sent images successfully' };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
   }
 }
+
 
 //-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'flowId18') {
