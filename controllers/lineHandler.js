@@ -745,7 +745,7 @@ if (matchedIntent.intent_name === 'flowId30') {  // ตรวจสอบ intent
   if (Flowchart.length > 0) {
       // สร้างรายการข้อความ
       const flowchartList = Flowchart.map(flow => 
-          `🌐 ${flow.flow_name}`
+          `${flow.flow_name}`
       ).join('\n\n');
 
       // แยก URL ออกเป็นหลายๆ อัน
