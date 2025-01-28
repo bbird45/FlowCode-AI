@@ -65,16 +65,6 @@ async function getQuizFromDB() {
   }
 }
 
-async function getQuestionFromDB() {
-  try {
-    const [Question] = await pool.query('SELECT * FROM Question;');
-    return Question;
-  } catch (error) {
-    console.error('Error fetching courses from database:', error);
-    throw new Error('Database query failed');
-  }
-}
-
 async function getadminFromDB() {
   try {
     const [admin] = await pool.query('SELECT * FROM admin;');
@@ -90,6 +80,5 @@ module.exports = {
   getflowchartFromDB,
   getPseudocodeFromDB,
   getQuizFromDB,
-  getQuestionFromDB,
   getadminFromDB,
 };

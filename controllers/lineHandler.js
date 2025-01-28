@@ -3,7 +3,6 @@ const stringSimilarity = require('string-similarity');
 const { getflowchartFromDB } = require('../database/database');
 const { getPseudocodeFromDB } = require('../database/database');
 const { getQuizFromDB } = require('../database/database');
-const { getQuestionFromDB } = require('../database/database');
 const { getadminFromDB } = require('../database/database');
 
 // ฟังก์ชันจัดการกับ event ที่ได้รับจาก LINE
@@ -549,6 +548,42 @@ async function handleEvent(event, intentsData) {
       }
 
 //-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'flowId28') {
+        const flowchart = await getflowchartFromDB();
+        const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 28);
+      
+        if (Flowchart.length > 0) {
+          const flowchartList = Flowchart.map(flow => 
+              `📖 ${flow.flow_description}\n───── ⋆⋅☆⋅⋆ ─────`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
+          return { status: 'Success', response: flowchartList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'flowId34') {
+        const flowchart = await getflowchartFromDB();
+        const Flowchart = flowchart.filter(flow => flow.flow_id === 3 || flow.flow_id === 4);
+      
+        if (Flowchart.length > 0) {
+          const flowchartList = Flowchart.map(flow => 
+              `💻 ${flow.flow_name}\n📖 ${flow.flow_description}\n───── ⋆⋅☆⋅⋆ ─────`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
+          return { status: 'Success', response: flowchartList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'flowId4567') {
         const flowchart = await getflowchartFromDB();
         const Flowchart = flowchart.filter(flow => flow.flow_id === 14 || flow.flow_id === 15 || flow.flow_id === 16 || flow.flow_id === 17);
@@ -1066,25 +1101,6 @@ async function handleEvent(event, intentsData) {
       }
 
 //-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'question') {
-        const question = await getQuestionFromDB();
-        
-        const Question = question.filter(ques => ques.Question_id && ques.Question_id);
-      
-        if (question.length > 0) {
-          const quesList = Question.map(ques => 
-              `${ques.Question_name}\n────────────`
-          ).join('\n');
-      
-          await client.replyMessage(event.replyToken, { type: 'text', text: quesList });
-          return { status: 'Success', response: quesList };
-        } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
-
-//-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'admin') {
         const admin = await getadminFromDB();
         
@@ -1104,44 +1120,72 @@ async function handleEvent(event, intentsData) {
       }
 
 //-------------------------------------------------------------------------------------------------------------
+        if (matchedIntent.intent_name === 'คำถามที่พบบ่อย') {
+          const messageText = `✨ คำถามที่พบบ่อย
+      ───── ⋆⋅☆⋅⋆ ───── 
+      📜 "ผังงานคืออะไร" 
+      ───── ⋆⋅☆⋅⋆ ───── 
+      📖  "ผังงานมีกี่ประเภท"
+      ───── ⋆⋅☆⋅⋆ ───── 
+      📝  "ประโยชน์ของการเขียนผังงานคือ"
+      ───── ⋆⋅☆⋅⋆ ───── 
+      🖥️ "การเขียนผังงานที่ดีควรทำอย่างไร"
+      ───── ⋆⋅☆⋅⋆ ───── 
+      📚 "ข้อจำกัดของผังงานคือ"
+      ───── ⋆⋅☆⋅⋆ ───── 
+      📜 "รหัสเทียมคืออะไร"
+      ───── ⋆⋅☆⋅⋆ ───── 
+      📖 "ประโยชน์ของการเขียนรหัสเทียมคือ"
+      ───── ⋆⋅☆⋅⋆ ───── 
+      🔹 "หลักการเขียนรหัสเทียมที่ดีคือ"
+      ───── ⋆⋅☆⋅⋆ ───── 
+      🔄 "คำสั่งพื้นฐานรหัสเทียมคือ" 
+      ─── ──── ─────
+
+      ✨นี่คือคำถามเบื้องต้นที่พบบ่อย
+      `;
+          await client.replyMessage(event.replyToken, { type: 'text', text: messageText });
+          return { status: 'Success', response: messageText };
+      }
+
+//-------------------------------------------------------------------------------------------------------------
         if (matchedIntent.intent_name === 'คำแนะนำ') {
           const messageText = `✨ คำแนะนำ
       🔍  พิมพ์ค้นหาอย่างไร? นี้คือตัวอย่างการพิมพ์คำค้นหา 
-      ─── ──── ───── 
+      ───── ⋆⋅☆⋅⋆ ───── 
       🔍 ต้องการค้นหารหัสเทียมคืออะไร?
       📜 "พิมพ์ว่า รหัสเทียม" 
-      ─── ──── ───── 
+      ───── ⋆⋅☆⋅⋆ ─────  
       🔍 ต้องการค้นหาประโยชน์ของการเขียนรหัสเทียม
       📖  "พิมพ์ว่า ประโยชน์รหัสเทียม"
-      ─── ──── ───── 
+      ───── ⋆⋅☆⋅⋆ ───── 
       🔍 ต้องการค้นหาหลักการเขียนรหัสเทียม
       📝  "พิมพ์ว่า หลักการรหัสเทียม"
-      ─── ──── ───── 
+      ───── ⋆⋅☆⋅⋆ ───── 
       🔍 ต้องการค้นหาตัวอย่างการเขียนรหัสเทียม
       🖥️ "พิมพ์ว่า ตัวอย่างรหัสเทียม"
-      ─── ──── ───── 
+      ───── ⋆⋅☆⋅⋆ ───── 
       🔍 ต้องการค้นหาความหมายรหัสเทียม
       📚 "พิมพ์ว่า ความหมายรหัสเทียม"
-      ─── ──── ───── 
+      ───── ⋆⋅☆⋅⋆ ───── 
       🔍 ต้องการค้นหาผังงานคืออะไร?
       📜 "พิมพ์ว่า ผังงาน"
-      ─── ──── ───── 
+      ───── ⋆⋅☆⋅⋆ ───── 
       🔍 ต้องการค้นหาประโยชน์ของผังงาน
       📖 "พิมพ์ว่า ประโยชน์ผังงาน"
-      ─── ──── ─────
+      ───── ⋆⋅☆⋅⋆ ───── 
       🔍 ต้องการค้นหาสัญลักษณ์ที่ใช้ในผังงาน
       🔹 "พิมพ์ว่า สัญลักษณ์ผังงาน"
-      ─── ──── ───── 
+      ───── ⋆⋅☆⋅⋆ ───── 
       🔍 ต้องการค้นหาตัวอย่างการเขียนผังงาน
       🔄 "พิมพ์ว่า ตัวอย่างผังงาน" 
-      ─── ──── ─────
+      ───── ⋆⋅☆⋅⋆ ───── 
       🔍 ต้องการค้นหา Start/Terminator คืออะไร
       🚀 "พิมพ์ว่า Start หรือ Terminator"
-      ─── ──── ─────
+      ───── ⋆⋅☆⋅⋆ ───── 
 
       ✨นี้คือการค้นหาเบื้องต้นที่พบบ่อย
       `;
-      
           await client.replyMessage(event.replyToken, { type: 'text', text: messageText });
           return { status: 'Success', response: messageText };
       }
