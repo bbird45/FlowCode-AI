@@ -37,7 +37,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `📘 ${flow.flow_name}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📘 ${flow.flow_name}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -57,7 +57,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `❓ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `❓ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -77,7 +77,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🌐 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🌐 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -97,7 +97,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `💻 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `💻 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -117,7 +117,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔷 ${flow.flow_name}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🔷 ${flow.flow_name}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -137,7 +137,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `💡 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `💡 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -157,7 +157,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `✅ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `✅ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -177,7 +177,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🚫 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🚫 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -197,7 +197,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `⚖️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `⚖️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -217,7 +217,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `📚 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📚 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
           return { status: 'Success', response: flowchartList };
@@ -236,7 +236,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `⬇️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `⬇️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -256,7 +256,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔀 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🔀 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -276,7 +276,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔄 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🔄 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -296,7 +296,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `⬇️ ${flow.flow_name}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `⬇️ ${flow.flow_name}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -316,7 +316,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔀 ${flow.flow_name}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🔀 ${flow.flow_name}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -336,7 +336,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔄 ${flow.flow_name}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🔄 ${flow.flow_name}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -356,7 +356,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔍 ${flow.flow_name}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🔍 ${flow.flow_name}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -374,7 +374,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🚀 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🚀 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -392,7 +392,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `⚙️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `⚙️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -410,7 +410,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `📥📤 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📥📤 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -428,7 +428,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `⚖️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `⚖️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -446,7 +446,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `📄 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📄 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -464,7 +464,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `⌨️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `⌨️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -482,7 +482,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🖥️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🖥️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -500,7 +500,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🌐 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🌐 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -518,7 +518,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `🔘 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🔘 ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -536,7 +536,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `➡️⬅️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
+              `➡️⬅️ ${flow.flow_name}\n📖 ${flow.flow_description}\n🔗 ${flow.flow_url}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -554,7 +554,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `📖 ${flow.flow_description}\n───── ⋆⋅☆⋅⋆ ─────`
+              `${flow.flow_description}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -572,7 +572,7 @@ async function handleEvent(event, intentsData) {
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
-              `💻 ${flow.flow_name}\n📖 ${flow.flow_description}\n───── ⋆⋅☆⋅⋆ ─────`
+              `💻 ${flow.flow_name}\n📖 ${flow.flow_description}🔗 ${flow.flow_url}\n───── ⋆⋅☆⋅⋆ ─────`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
@@ -610,7 +610,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `📘 ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📘 ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -630,7 +630,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `📄 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📄 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -650,7 +650,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `💻 ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `💻 ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -670,7 +670,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `💡 ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `💡 ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -690,7 +690,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `⚖️ ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `⚖️ ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -710,7 +710,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `📚 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📚 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -730,7 +730,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `⚙️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `⚙️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -750,7 +750,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `🧮 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🧮 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -770,7 +770,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `⌨️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `⌨️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -790,7 +790,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `👁️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `👁️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -810,7 +810,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `📂 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📂 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -830,7 +830,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `🔀 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🔀 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -850,7 +850,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `🔄 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `🔄 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -870,7 +870,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `➡️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `➡️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -890,7 +890,7 @@ async function handleEvent(event, intentsData) {
 
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `📄 ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📄 ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
 
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -910,7 +910,133 @@ async function handleEvent(event, intentsData) {
       
         if (pseudocode.length > 0) {
           const pseudocodeList = Pseudocode.map(pseudo => 
-              `✅ ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}\n───── ⋆⋅☆⋅⋆ ─────`
+              `✅ ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
+          return { status: 'Success', response: pseudocodeList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'pseudoId17') {
+        const pseudocode = await getPseudocodeFromDB();
+        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 17);
+      
+        if (pseudocode.length > 0) {
+          const pseudocodeList = Pseudocode.map(pseudo => 
+              `${pseudo.Pseudo_description}`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
+          return { status: 'Success', response: pseudocodeList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'pseudoId18') {
+        const pseudocode = await getPseudocodeFromDB();
+        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 18);
+      
+        if (pseudocode.length > 0) {
+          const pseudocodeList = Pseudocode.map(pseudo => 
+              `${pseudo.Pseudo_description}`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
+          return { status: 'Success', response: pseudocodeList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'pseudoId19') {
+        const pseudocode = await getPseudocodeFromDB();
+        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 19);
+      
+        if (pseudocode.length > 0) {
+          const pseudocodeList = Pseudocode.map(pseudo => 
+              `⚙️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
+          return { status: 'Success', response: pseudocodeList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'pseudoId20') {
+        const pseudocode = await getPseudocodeFromDB();
+        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 20);
+      
+        if (pseudocode.length > 0) {
+          const pseudocodeList = Pseudocode.map(pseudo => 
+              `⚙️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
+          return { status: 'Success', response: pseudocodeList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'pseudoId21') {
+        const pseudocode = await getPseudocodeFromDB();
+        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 21);
+      
+        if (pseudocode.length > 0) {
+          const pseudocodeList = Pseudocode.map(pseudo => 
+              `⚙️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
+          return { status: 'Success', response: pseudocodeList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'pseudoId22') {
+        const pseudocode = await getPseudocodeFromDB();
+        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 22);
+      
+        if (pseudocode.length > 0) {
+          const pseudocodeList = Pseudocode.map(pseudo => 
+              `⚙️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
+          ).join('\n\n');
+      
+          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
+          return { status: 'Success', response: pseudocodeList };
+        } else {
+          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+          return { status: 'No' };
+        }
+      }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+      if (matchedIntent.intent_name === 'pseudoId23') {
+        const pseudocode = await getPseudocodeFromDB();
+        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 23);
+      
+        if (pseudocode.length > 0) {
+          const pseudocodeList = Pseudocode.map(pseudo => 
+              `⚙️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
@@ -949,7 +1075,7 @@ async function handleEvent(event, intentsData) {
       
         if (quizion.length > 0) {
           const quizList = Quiz.map(quiz => 
-              `📝 ${quiz.Quiz_name}\n🔗 ${quiz.Quiz_link}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📝 ${quiz.Quiz_name}\n🔗 ${quiz.Quiz_link}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: quizList });
@@ -969,7 +1095,7 @@ async function handleEvent(event, intentsData) {
       
         if (quizion.length > 0) {
           const quizList = Quiz.map(quiz => 
-              `📝 ${quiz.Quiz_name}\n🔗 ${quiz.Quiz_link}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📝 ${quiz.Quiz_name}\n🔗 ${quiz.Quiz_link}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: quizList });
@@ -989,7 +1115,7 @@ async function handleEvent(event, intentsData) {
       
         if (quizion.length > 0) {
           const quizList = Quiz.map(quiz => 
-              `📝 ${quiz.Quiz_name}\n🔗 ${quiz.Quiz_link}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📝 ${quiz.Quiz_name}\n🔗 ${quiz.Quiz_link}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: quizList });
@@ -1009,7 +1135,7 @@ async function handleEvent(event, intentsData) {
       
         if (quizion.length > 0) {
           const quizList = Quiz.map(quiz => 
-              `📝 ${quiz.Quiz_name}\n🔗 ${quiz.Quiz_link}\n───── ⋆⋅☆⋅⋆ ─────`
+              `📝 ${quiz.Quiz_name}\n🔗 ${quiz.Quiz_link}`
           ).join('\n\n');
       
           await client.replyMessage(event.replyToken, { type: 'text', text: quizList });
@@ -1121,26 +1247,18 @@ async function handleEvent(event, intentsData) {
 
 //-------------------------------------------------------------------------------------------------------------
         if (matchedIntent.intent_name === 'คำถามที่พบบ่อย') {
-          const messageText = `✨ คำถามที่พบบ่อย
-      ───── ⋆⋅☆⋅⋆ ───── 
-      📜 "ผังงานคืออะไร" 
-      ───── ⋆⋅☆⋅⋆ ───── 
-      📖  "ผังงานมีกี่ประเภท"
-      ───── ⋆⋅☆⋅⋆ ───── 
-      📝  "ประโยชน์ของการเขียนผังงานคือ"
-      ───── ⋆⋅☆⋅⋆ ───── 
-      🖥️ "การเขียนผังงานที่ดีควรทำอย่างไร"
-      ───── ⋆⋅☆⋅⋆ ───── 
-      📚 "ข้อจำกัดของผังงานคือ"
-      ───── ⋆⋅☆⋅⋆ ───── 
-      📜 "รหัสเทียมคืออะไร"
-      ───── ⋆⋅☆⋅⋆ ───── 
-      📖 "ประโยชน์ของการเขียนรหัสเทียมคือ"
-      ───── ⋆⋅☆⋅⋆ ───── 
-      🔹 "หลักการเขียนรหัสเทียมที่ดีคือ"
-      ───── ⋆⋅☆⋅⋆ ───── 
-      🔄 "คำสั่งพื้นฐานรหัสเทียมคือ" 
-      ─── ──── ─────
+          const messageText = `✨ คำถามที่พบบ่อย\n
+      ───── ⋆⋅☆⋅⋆ ───── \n 
+      📜 "ผังงานคืออะไร"\n 
+      📖  "ผังงานมีกี่ประเภท"\n
+      📝  "ประโยชน์ของการเขียนผังงานคือ"\n
+      🖥️ "การเขียนผังงานที่ดีควรทำอย่างไร"\n
+      📚 "ข้อจำกัดของผังงานคือ"\n
+      📜 "รหัสเทียมคืออะไร"\n
+      📖 "ประโยชน์ของการเขียนรหัสเทียมคือ"\n 
+      🔹 "หลักการเขียนรหัสเทียมที่ดีคือ"\n
+      🔄 "คำสั่งพื้นฐานรหัสเทียมคือ"\n
+      ───── ⋆⋅☆⋅⋆ ─────
 
       ✨นี่คือคำถามเบื้องต้นที่พบบ่อย
       `;
