@@ -740,12 +740,12 @@ if (matchedIntent.intent_name === 'flowId30') {  // ตรวจสอบ intent
   const flowchart = await getflowchartFromDB();
 
   // ฟิลเตอร์หาผังงานระบบ
-  const Flowchart = flowchart.filter(flow => flow.flow_id === 3 || flow.flow_id === 4);
+  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 30);
 
   if (Flowchart.length > 0) {
       // สร้างรายการข้อความ
       const flowchartList = Flowchart.map(flow => 
-          `${flow.flow_name}`
+          `🌐 ${flow.flow_name}`
       ).join('\n\n');
 
       // แยก URL ออกเป็นหลายๆ อัน
