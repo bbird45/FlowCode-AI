@@ -584,9 +584,9 @@ async function handleEvent(event, intentsData) {
       }
 
 //-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'flowId34') {
+      if (matchedIntent.intent_name === 'flowId30') {
         const flowchart = await getflowchartFromDB();
-        const Flowchart = flowchart.filter(flow => flow.flow_id === 3 || flow.flow_id === 4);
+        const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 30);
       
         if (Flowchart.length > 0) {
           const flowchartList = Flowchart.map(flow => 
