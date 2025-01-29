@@ -32,7 +32,7 @@ async function handleEvent(event, intentsData) {
 if (matchedIntent.intent_name === 'flowId1') {
   const flowchart = await getflowchartFromDB();
   
-  // ฟิลเตอร์หาเนื้อหารหัสเทียม
+  // ฟิลเตอร์หาเนื้อหาผังงาน
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 1);
 
   if (Flowchart.length > 0) {
@@ -41,6 +41,7 @@ if (matchedIntent.intent_name === 'flowId1') {
       // ส่ง Flex Message
       await client.replyMessage(event.replyToken, {
           type: 'flex',
+          altText: 'เนื้อหาผังงาน',
           contents: {
               type: 'bubble',
               body: {
@@ -57,7 +58,7 @@ if (matchedIntent.intent_name === 'flowId1') {
                           type: 'text',
                           text: `${flow.flow_description}`,
                           size: 'md'
-                      },
+                      }
                   ]
               },
               footer: {
@@ -847,6 +848,7 @@ if (matchedIntent.intent_name === 'pseudoId1') {
       // ส่ง Flex Message
       await client.replyMessage(event.replyToken, {
           type: 'flex',
+          altText: 'เนื้อหารหัสเทียม',
           contents: {
               type: 'bubble',
               body: {
