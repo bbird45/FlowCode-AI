@@ -805,18 +805,31 @@ if (matchedIntent.intent_name === 'pseudoId1') {
   const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 1);
 
   if (Pseudocode.length > 0) {
-      const pseudocodeList = Pseudocode.map(pseudo => 
-          `📘 ${pseudo.Pseudo_name}\n🔗 [ข้อมูลเพิ่มเติม](${pseudo.Pseudo_URL})`
-      ).join('\n\n');
+      const pseudo = Pseudocode[0]; // ใช้ข้อมูลตัวแรกที่พบ
 
-      await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-      return { status: 'Success', response: pseudocodeList };
+      await client.replyMessage(event.replyToken, {
+          type: 'text',
+          text: `📘 ${pseudo.Pseudo_name}\nคลิกปุ่มด้านล่างเพื่อดูข้อมูลเพิ่มเติม`,
+          quickReply: {
+              items: [
+                  {
+                      type: 'action',
+                      action: {
+                          type: 'uri',
+                          label: 'ข้อมูลเพิ่มเติม',
+                          uri: pseudo.Pseudo_URL // URL ที่ต้องการ
+                      }
+                  }
+              ]
+          }
+      });
+
+      return { status: 'Success', response: 'Quick Reply Sent' };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
   }
 }
-
 //-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'pseudoId2') {
         const pseudocode = await getPseudocodeFromDB();
