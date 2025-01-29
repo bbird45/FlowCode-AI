@@ -903,7 +903,8 @@ if (matchedIntent.intent_name === 'pseudoId1') {
                       {
                           type: 'text',
                           text: `${pseudo.Pseudo_description}`,
-                          size: 'md'
+                          size: 'md',
+                          wrap: true
                       }
                   ]
               },
