@@ -819,8 +819,13 @@ if (matchedIntent.intent_name === 'pseudoId1') {
                   contents: [
                       {
                           type: 'text',
-                          text: `📘 ${pseudo.Pseudo_name}`,
+                          text: `${pseudo.Pseudo_name}`,
                           weight: 'bold',
+                          size: 'lg'
+                      },
+                      {
+                          type: 'text',
+                          text: `${pseudo.Pseudo_description}`,
                           size: 'lg'
                       },
                       {
