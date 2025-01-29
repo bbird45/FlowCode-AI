@@ -878,7 +878,7 @@ if (matchedIntent.intent_name === 'pseudoId1') {
                               label: 'ข้อมูลเพิ่มเติม',
                               uri: pseudo.Pseudo_URL // URL ที่ต้องการ
                           },
-                           style: 'small'
+                          height: 'sm'
                       }
                   ]
               }
