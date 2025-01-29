@@ -436,47 +436,24 @@ if (matchedIntent.intent_name === 'flowId10') {
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 10);
 
   if (Flowchart.length > 0) {
-      const flow = Flowchart[0]; // เอาเฉพาะข้อมูลตัวแรกมาใช้
+      const flow = Flowchart[0]; // เอาข้อมูลตัวแรกมาใช้
       const imageUrls = flow.flow_url.split(',').map(url => url.trim()); // แยก URL ของรูป
 
-      // สร้าง Flex Message (bubble เดียว)
-      const flexMessage = {
-          type: 'bubble',
-          body: {
-              type: 'box',
-              layout: 'vertical',
-              contents: [
-                  {
-                      type: 'text',
-                      text: flow.flow_name, // แสดงชื่อแค่ครั้งเดียว
-                      weight: 'bold',
-                      size: 'lg'
-                  },
-                  {
-                      type: 'text',
-                      text: flow.flow_description, // แสดงคำอธิบายแค่ครั้งเดียว
-                      size: 'md',
-                      wrap: true
-                  },
-                  ...imageUrls.map(url => ({
-                      type: 'image',
-                      url: url,
-                      size: 'full',
-                      aspectRatio: "16:9",
-                      aspectMode: "cover"
-                  }))
-              ]
-          }
+      // สร้างข้อความข้อมูล (ใช้ "..." ครอบชื่อเพื่อให้ดูเด่นขึ้น)
+      const textMessage = {
+          type: 'text',
+          text: `📌 ${flow.flow_name}\n\n${flow.flow_description}`
       };
 
-      // ส่ง Flex Message
-      await client.replyMessage(event.replyToken, [
-          { 
-              type: 'flex', 
-              altText: 'ข้อมูลรูปแบบของผังงาน',
-              contents: flexMessage
-          }
-      ]);
+      // สร้างข้อความรูปภาพ (ส่งแยกจากข้อความเพื่อให้กดดูได้)
+      const imageMessages = imageUrls.map(url => ({
+          type: 'image',
+          originalContentUrl: url,
+          previewImageUrl: url
+      }));
+
+      // ส่งข้อความและรูปภาพแยกกัน
+      await client.replyMessage(event.replyToken, [textMessage, ...imageMessages]);
 
       return { status: 'Success', response: flow.flow_name };
   } else {
@@ -484,6 +461,7 @@ if (matchedIntent.intent_name === 'flowId10') {
       return { status: 'No' };
   }
 }
+
 
 if (matchedIntent.intent_name === 'flowId11') {
   const flowchart = await getflowchartFromDB();
@@ -693,27 +671,11 @@ if (matchedIntent.intent_name === 'flowId17') {
 
   if (Flowchart.length > 0) {
       const flowImages = Flowchart.map(flow => {
-          const urls = flow.flow_url.split(',');
+          const urls = flow.flow_url.split(',');  
           return urls.map(url => ({
-              type: 'flex',
-              altText: 'ข้อมูลตัวอย่างการวิเคราะห์ปัญหาและเขียนผังงาน',
-              contents: {
-                  type: 'bubble',
-                  body: {
-                      type: 'box',
-                      layout: 'vertical',
-                      contents: [
-                          {
-                              type: 'image',
-                              url: url.trim(),
-                              size: 'full',
-                              aspectRatio: '16:9',
-                              aspectMode: 'cover'
-                          }
-                      ],
-                      alignItems: 'end'  // ดันเนื้อหาไปทางขวา
-                  }
-              }
+              type: 'image',
+              originalContentUrl: url.trim(), 
+              previewImageUrl: url.trim() 
           }));
       }).flat(); 
 
