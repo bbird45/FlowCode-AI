@@ -229,7 +229,7 @@ if (matchedIntent.intent_name === 'flowId4') {
 if (matchedIntent.intent_name === 'flowId5') {
   const flowchart = await getflowchartFromDB();
 
-  // ฟิลเตอร์หาสัญลักษณ์ของผังงาน
+  // ฟิลเตอร์หาผังงานระบบ
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 5);
 
   if (Flowchart.length > 0) {
@@ -237,33 +237,13 @@ if (matchedIntent.intent_name === 'flowId5') {
           `${flow.flow_name}\n${flow.flow_description}`
       ).join('\n\n');
 
+      // ส่งข้อความพร้อมภาพ
       await client.replyMessage(event.replyToken, [
-          { 
-              type: 'flex', 
-              altText: 'ข้อมูลสัญลักษณ์ของผังงาน',
-              contents: {
-                  type: 'bubble',
-                  body: {
-                      type: 'box',
-                      layout: 'vertical',
-                      contents: Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_name,
-                          weight: 'bold', 
-                          size: 'lg'
-                      })).concat(Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_description,
-                          size: 'md',
-                          wrap: true
-                      })))
-                  }
-              }
-          },
+          { type: 'text', text: flowchartList }, // ส่งข้อความ
           { 
               type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, 
-              previewImageUrl: Flowchart[0].flow_url 
+              originalContentUrl: Flowchart[0].flow_url, // URL ของภาพ
+              previewImageUrl: Flowchart[0].flow_url // URL ของภาพตัวอย่าง
           }
       ]);
 
