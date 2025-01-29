@@ -485,29 +485,73 @@ if (matchedIntent.intent_name === 'flowId10') {
   }
 }
 
-
-
-if (matchedIntent.intent_name === 'flowId11') {  
+if (matchedIntent.intent_name === 'flowId11') {
   const flowchart = await getflowchartFromDB();
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 11);
 
   if (Flowchart.length > 0) {
-      const flowImages = Flowchart.map(flow => {
-          const urls = flow.flow_url.split(','); 
-          return urls.map(url => ({
-              type: 'image',
-              originalContentUrl: url.trim(), 
-              previewImageUrl: url.trim() 
-          }));
-      }).flat(); 
+      const flow = Flowchart[0]; // เอาเฉพาะข้อมูลตัวแรกมาใช้
+      const imageUrls = flow.flow_url.split(',').map(url => url.trim()); // แยก URL ของรูป
 
-      await client.replyMessage(event.replyToken, flowImages);
-      return { status: 'Success', response: 'Sent images successfully' };
+      // สร้าง Flex Message (bubble เดียว)
+      const flexMessage = {
+          type: 'bubble',
+          body: {
+              type: 'box',
+              layout: 'horizontal',  // ใช้แนวนอน
+              contents: [
+                  {
+                      type: 'box',
+                      layout: 'vertical',
+                      flex: 2,  // กำหนดให้ส่วนข้อความกว้างกว่า
+                      contents: [
+                          {
+                              type: 'text',
+                              text: flow.flow_name, // แสดงชื่อแค่ครั้งเดียว
+                              weight: 'bold',
+                              size: 'lg',
+                              wrap: true
+                          },
+                          {
+                              type: 'text',
+                              text: flow.flow_description, // แสดงคำอธิบายแค่ครั้งเดียว
+                              size: 'md',
+                              wrap: true
+                          }
+                      ]
+                  },
+                  {
+                      type: 'box',
+                      layout: 'vertical',
+                      flex: 3,  // กำหนดให้ส่วนรูปภาพกว้างกว่า
+                      contents: imageUrls.map(url => ({
+                          type: 'image',
+                          url: url,
+                          size: 'full',
+                          aspectRatio: "1:1",
+                          aspectMode: "cover"
+                      }))
+                  }
+              ]
+          }
+      };
+
+      // ส่ง Flex Message
+      await client.replyMessage(event.replyToken, [
+          { 
+              type: 'flex', 
+              altText: 'ข้อมูลหลักในการเขียนผังงาน',
+              contents: flexMessage
+          }
+      ]);
+
+      return { status: 'Success', response: flow.flow_name };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
   }
 }
+
 
 if (matchedIntent.intent_name === 'flowId12') {  
   const flowchart = await getflowchartFromDB();
@@ -649,11 +693,27 @@ if (matchedIntent.intent_name === 'flowId17') {
 
   if (Flowchart.length > 0) {
       const flowImages = Flowchart.map(flow => {
-          const urls = flow.flow_url.split(',');  
+          const urls = flow.flow_url.split(',');
           return urls.map(url => ({
-              type: 'image',
-              originalContentUrl: url.trim(), 
-              previewImageUrl: url.trim() 
+              type: 'flex',
+              altText: 'ข้อมูลตัวอย่างการวิเคราะห์ปัญหาและเขียนผังงาน',
+              contents: {
+                  type: 'bubble',
+                  body: {
+                      type: 'box',
+                      layout: 'vertical',
+                      contents: [
+                          {
+                              type: 'image',
+                              url: url.trim(),
+                              size: 'full',
+                              aspectRatio: '16:9',
+                              aspectMode: 'cover'
+                          }
+                      ],
+                      alignItems: 'end'  // ดันเนื้อหาไปทางขวา
+                  }
+              }
           }));
       }).flat(); 
 
@@ -664,6 +724,7 @@ if (matchedIntent.intent_name === 'flowId17') {
       return { status: 'No' };
   }
 }
+
 
 //-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId18') {
