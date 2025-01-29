@@ -431,27 +431,68 @@ if (matchedIntent.intent_name === 'flowId9') {
   }
 }
 
-if (matchedIntent.intent_name === 'flowId10') {  
+if (matchedIntent.intent_name === 'flowId10') {
   const flowchart = await getflowchartFromDB();
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 10);
 
   if (Flowchart.length > 0) {
-      const flowImages = Flowchart.map(flow => {
-          const urls = flow.flow_url.split(','); 
-          return urls.map(url => ({
-              type: 'image',
-              originalContentUrl: url.trim(), 
-              previewImageUrl: url.trim() 
-          }));
-      }).flat(); 
+      const flowchartList = Flowchart.map(flow => 
+          `${flow.flow_name}\n${flow.flow_description}`
+      ).join('\n\n');
 
-      await client.replyMessage(event.replyToken, flowImages);
-      return { status: 'Success', response: 'Sent images successfully' };
+      // สร้าง bubbles สำหรับ Flex Message
+      const bubbles = Flowchart.map(flow => {
+          const imageUrls = flow.flow_url.split(',').map(url => url.trim()); // แยก URL ภาพ
+          
+          return imageUrls.map(url => ({
+              type: 'bubble',
+              body: {
+                  type: 'box',
+                  layout: 'vertical',
+                  contents: [
+                      {
+                          type: 'text',
+                          text: flow.flow_name,
+                          weight: 'bold', 
+                          size: 'lg'
+                      },
+                      {
+                          type: 'text',
+                          text: flow.flow_description,
+                          size: 'md',
+                          wrap: true
+                      },
+                      {
+                          type: 'image',
+                          url: url, 
+                          size: 'full',
+                          aspectRatio: "16:9",
+                          aspectMode: "cover"
+                      }
+                  ]
+              }
+          }));
+      }).flat(); // ใช้ flat() เพื่อให้ได้อาร์เรย์เดียวของ bubbles
+
+      // ส่ง Flex Message
+      await client.replyMessage(event.replyToken, [
+          { 
+              type: 'flex', 
+              altText: 'ข้อมูลรูปแบบของผังงาน',
+              contents: {
+                  type: 'carousel',  // ใช้ carousel แสดงหลายรูป
+                  contents: bubbles
+              }
+          }
+      ]);
+
+      return { status: 'Success', response: flowchartList };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
   }
 }
+
 
 if (matchedIntent.intent_name === 'flowId11') {  
   const flowchart = await getflowchartFromDB();
