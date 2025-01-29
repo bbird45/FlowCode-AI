@@ -473,7 +473,7 @@ if (matchedIntent.intent_name === 'flowId10') {
       await client.replyMessage(event.replyToken, [
           { 
               type: 'flex', 
-              altText: 'ข้อมูลหลักในการเขียนผังงาน',
+              altText: 'ข้อมูลรูปแบบของผังงาน',
               contents: flexMessage
           }
       ]);
