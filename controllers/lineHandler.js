@@ -29,24 +29,61 @@ async function handleEvent(event, intentsData) {
       );
     
 //-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'flowId1') {
-        const flowchart = await getflowchartFromDB();
-        
-        // ฟิลเตอร์หาเนื้อหาผังงาน
-        const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 1);
-      
-        if (Flowchart.length > 0) {
-          const flowchartList = Flowchart.map(flow => 
-              `📘 ${flow.flow_name}\n🔗 ${flow.flow_description}\n🔗 ${flow.flow_url}`
-          ).join('\n\n');
-      
-          await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
-          return { status: 'Success', response: flowchartList };
-        } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+if (matchedIntent.intent_name === 'flowId1') {
+  const flowchart = await getflowchartFromDB();
+  
+  // ฟิลเตอร์หาเนื้อหาผังงาน
+  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 1);
+
+  if (Flowchart.length > 0) {
+      const flow = Flowchart[0]; // ใช้ข้อมูลตัวแรกที่พบ
+
+      // ส่ง Flex Message
+      await client.replyMessage(event.replyToken, {
+          type: 'flex',
+          contents: {
+              type: 'bubble',
+              body: {
+                  type: 'box',
+                  layout: 'vertical',
+                  contents: [
+                      {
+                          type: 'text',
+                          text: `${flow.flow_name}`,
+                          weight: 'bold',
+                          size: 'lg'
+                      },
+                      {
+                          type: 'text',
+                          text: `${flow.flow_description}`,
+                          size: 'md'
+                      },
+                  ]
+              },
+              footer: {
+                  type: 'box',
+                  layout: 'vertical',
+                  contents: [
+                      {
+                          type: 'button',
+                          action: {
+                              type: 'uri',
+                              label: 'ข้อมูลเพิ่มเติม',
+                              uri: flow.flow_url // URL ที่ต้องการ
+                          },
+                           height: 'sm'
+                      }
+                  ]
+              }
+          }
+      });
+
+      return { status: 'Success', response: 'Flex Message Sent' };
+  } else {
+      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+      return { status: 'No' };
+  }
+}
       
 //-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId2') {
@@ -810,7 +847,6 @@ if (matchedIntent.intent_name === 'pseudoId1') {
       // ส่ง Flex Message
       await client.replyMessage(event.replyToken, {
           type: 'flex',
-          altText: 'เนื้อหารหัสเทียม',
           contents: {
               type: 'bubble',
               body: {
@@ -826,14 +862,8 @@ if (matchedIntent.intent_name === 'pseudoId1') {
                       {
                           type: 'text',
                           text: `${pseudo.Pseudo_description}`,
-                          size: 'lg'
+                          size: 'md'
                       },
-                      {
-                          type: 'text',
-                          text: 'คลิกที่ปุ่มด้านล่างเพื่อดูข้อมูลเพิ่มเติม',
-                          margin: 'md',
-                          size: 'sm'
-                      }
                   ]
               },
               footer: {
@@ -846,7 +876,8 @@ if (matchedIntent.intent_name === 'pseudoId1') {
                               type: 'uri',
                               label: 'ข้อมูลเพิ่มเติม',
                               uri: pseudo.Pseudo_URL // URL ที่ต้องการ
-                          }
+                          },
+                          style: 'small'
                       }
                   ]
               }
