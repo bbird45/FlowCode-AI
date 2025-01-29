@@ -229,7 +229,7 @@ if (matchedIntent.intent_name === 'flowId4') {
 if (matchedIntent.intent_name === 'flowId5') {
   const flowchart = await getflowchartFromDB();
 
-  // ฟิลเตอร์หาสัญลักษณ์ผังงาน
+  // ฟิลเตอร์หาสัญลักษณ์ของผังงาน
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 5);
 
   if (Flowchart.length > 0) {
@@ -240,7 +240,7 @@ if (matchedIntent.intent_name === 'flowId5') {
       await client.replyMessage(event.replyToken, [
           { 
               type: 'flex', 
-              altText: 'ข้อมูลสัญลักษณ์ผังงาน',
+              altText: 'ข้อมูลสัญลักษณ์ของผังงาน',
               contents: {
                   type: 'bubble',
                   body: {
