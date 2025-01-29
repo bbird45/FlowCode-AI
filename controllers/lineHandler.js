@@ -31,14 +31,11 @@ async function handleEvent(event, intentsData) {
 //-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId1') {
   const flowchart = await getflowchartFromDB();
-
-  // ฟิลเตอร์หาผังงาน
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 1);
 
   if (Flowchart.length > 0) {
-      const flow = Flowchart[0]; // ใช้ข้อมูลตัวแรกที่พบ
+      const flow = Flowchart[0]; 
 
-      // ส่ง Flex Message
       await client.replyMessage(event.replyToken, {
           type: 'flex',
           altText: 'เนื้อหาผังงาน',
@@ -71,7 +68,7 @@ if (matchedIntent.intent_name === 'flowId1') {
                           action: {
                               type: 'uri',
                               label: 'ข้อมูลเพิ่มเติม',
-                              uri: flow.flow_url // URL ที่ต้องการ
+                              uri: flow.flow_url 
                           },
                           height: 'sm'
                       }
@@ -87,47 +84,19 @@ if (matchedIntent.intent_name === 'flowId1') {
   }
 }
       
-//-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId2') {
   const flowchart = await getflowchartFromDB();
-
-  // ฟิลเตอร์หาผังงานระบบ
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 2);
-
-  if (Flowchart.length > 0) {
-      // ส่งข้อความพร้อมภาพโดยไม่ใช้ flowchartList
-      await client.replyMessage(event.replyToken, [
-          { 
-              type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, // URL ของภาพ
-              previewImageUrl: Flowchart[0].flow_url // URL ของภาพตัวอย่าง
-          }
-      ]);
-
-      return { status: 'Success', response: 'Sent image successfully' };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
-}
-
-//-----------------------------------------------------------------------------------------------------------------------------
-if (matchedIntent.intent_name === 'flowId3') {
-  const flowchart = await getflowchartFromDB();
-
-  // ฟิลเตอร์หาผังงานระบบ
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 3);
 
   if (Flowchart.length > 0) {
       const flowchartList = Flowchart.map(flow => 
           `${flow.flow_name}\n${flow.flow_description}`
       ).join('\n\n');
 
-      // ส่ง Flex Message พร้อมภาพ
       await client.replyMessage(event.replyToken, [
           { 
               type: 'flex', 
-              altText: 'ข้อมูลผังงานระบบ',
+              altText: 'ข้อมูลความหมายผังงาน',
               contents: {
                   type: 'bubble',
                   body: {
@@ -136,7 +105,7 @@ if (matchedIntent.intent_name === 'flowId3') {
                       contents: Flowchart.map(flow => ({
                           type: 'text',
                           text: flow.flow_name,
-                          weight: 'bold', // ทำให้ชื่อผังงานเป็นตัวหนา
+                          weight: 'bold', 
                           size: 'lg'
                       })).concat(Flowchart.map(flow => ({
                           type: 'text',
@@ -149,8 +118,8 @@ if (matchedIntent.intent_name === 'flowId3') {
           },
           { 
               type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, // URL ของภาพ
-              previewImageUrl: Flowchart[0].flow_url // URL ของภาพตัวอย่าง
+              originalContentUrl: Flowchart[0].flow_url, 
+              previewImageUrl: Flowchart[0].flow_url 
           }
       ]);
 
@@ -161,144 +130,336 @@ if (matchedIntent.intent_name === 'flowId3') {
   }
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
+if (matchedIntent.intent_name === 'flowId3') {
+  const flowchart = await getflowchartFromDB();
+
+  // ฟิลเตอร์หาผังงานระบบ
+  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 3);
+
+  if (Flowchart.length > 0) {
+      const flowchartList = Flowchart.map(flow => 
+          `${flow.flow_name}\n${flow.flow_description}`
+      ).join('\n\n');
+
+      await client.replyMessage(event.replyToken, [
+          { 
+              type: 'flex', 
+              altText: 'ข้อมูลผังงานระบบ',
+              contents: {
+                  type: 'bubble',
+                  body: {
+                      type: 'box',
+                      layout: 'vertical',
+                      contents: Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_name,
+                          weight: 'bold', 
+                          size: 'lg'
+                      })).concat(Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_description,
+                          size: 'md',
+                          wrap: true
+                      })))
+                  }
+              }
+          },
+          { 
+              type: 'image', 
+              originalContentUrl: Flowchart[0].flow_url, 
+              previewImageUrl: Flowchart[0].flow_url 
+          }
+      ]);
+
+      return { status: 'Success', response: flowchartList };
+  } else {
+      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+      return { status: 'No' };
+  }
+}
+
 if (matchedIntent.intent_name === 'flowId4') {
   const flowchart = await getflowchartFromDB();
 
-  // ฟิลเตอร์หาผังงานระบบ
+  // ฟิลเตอร์หาผังงานโปรแกรม
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 4);
 
   if (Flowchart.length > 0) {
-      // ส่งข้อความพร้อมภาพโดยไม่ใช้ flowchartList
+      const flowchartList = Flowchart.map(flow => 
+          `${flow.flow_name}\n${flow.flow_description}`
+      ).join('\n\n');
+
       await client.replyMessage(event.replyToken, [
           { 
+              type: 'flex', 
+              altText: 'ข้อมูลผังงานโปรแกรม',
+              contents: {
+                  type: 'bubble',
+                  body: {
+                      type: 'box',
+                      layout: 'vertical',
+                      contents: Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_name,
+                          weight: 'bold', 
+                          size: 'lg'
+                      })).concat(Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_description,
+                          size: 'md',
+                          wrap: true
+                      })))
+                  }
+              }
+          },
+          { 
               type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, // URL ของภาพ
-              previewImageUrl: Flowchart[0].flow_url // URL ของภาพตัวอย่าง
+              originalContentUrl: Flowchart[0].flow_url, 
+              previewImageUrl: Flowchart[0].flow_url 
           }
       ]);
 
-      return { status: 'Success', response: 'Sent image successfully' };
+      return { status: 'Success', response: flowchartList };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
   }
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId5') {
   const flowchart = await getflowchartFromDB();
 
-  // ฟิลเตอร์หาผังงานระบบ
+  // ฟิลเตอร์หาสัญลักษณ์ผังงาน
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 5);
 
   if (Flowchart.length > 0) {
-      // ส่งข้อความพร้อมภาพโดยไม่ใช้ flowchartList
+      const flowchartList = Flowchart.map(flow => 
+          `${flow.flow_name}\n${flow.flow_description}`
+      ).join('\n\n');
+
       await client.replyMessage(event.replyToken, [
           { 
+              type: 'flex', 
+              altText: 'ข้อมูลสัญลักษณ์ผังงาน',
+              contents: {
+                  type: 'bubble',
+                  body: {
+                      type: 'box',
+                      layout: 'vertical',
+                      contents: Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_name,
+                          weight: 'bold', 
+                          size: 'lg'
+                      })).concat(Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_description,
+                          size: 'md',
+                          wrap: true
+                      })))
+                  }
+              }
+          },
+          { 
               type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, // URL ของภาพ
-              previewImageUrl: Flowchart[0].flow_url // URL ของภาพตัวอย่าง
+              originalContentUrl: Flowchart[0].flow_url, 
+              previewImageUrl: Flowchart[0].flow_url 
           }
       ]);
 
-      return { status: 'Success', response: 'Sent image successfully' };
+      return { status: 'Success', response: flowchartList };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
   }
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId6') {
   const flowchart = await getflowchartFromDB();
 
-  // ฟิลเตอร์หาผังงานระบบ
+  // ฟิลเตอร์หาประโยชน์ของผังงาน
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 6);
 
   if (Flowchart.length > 0) {
-      // ส่งข้อความพร้อมภาพโดยไม่ใช้ flowchartList
+      const flowchartList = Flowchart.map(flow => 
+          `${flow.flow_name}\n${flow.flow_description}`
+      ).join('\n\n');
+
       await client.replyMessage(event.replyToken, [
           { 
+              type: 'flex', 
+              altText: 'ข้อมูลประโยชน์ของผังงาน',
+              contents: {
+                  type: 'bubble',
+                  body: {
+                      type: 'box',
+                      layout: 'vertical',
+                      contents: Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_name,
+                          weight: 'bold', 
+                          size: 'lg'
+                      })).concat(Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_description,
+                          size: 'md',
+                          wrap: true
+                      })))
+                  }
+              }
+          },
+          { 
               type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, // URL ของภาพ
-              previewImageUrl: Flowchart[0].flow_url // URL ของภาพตัวอย่าง
+              originalContentUrl: Flowchart[0].flow_url, 
+              previewImageUrl: Flowchart[0].flow_url 
           }
       ]);
 
-      return { status: 'Success', response: 'Sent image successfully' };
+      return { status: 'Success', response: flowchartList };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
   }
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId7') {
   const flowchart = await getflowchartFromDB();
 
-  // ฟิลเตอร์หาผังงานระบบ
+  // ฟิลเตอร์หาการเขียนผังงานที่ดี
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 7);
 
   if (Flowchart.length > 0) {
-      // ส่งข้อความพร้อมภาพโดยไม่ใช้ flowchartList
+      const flowchartList = Flowchart.map(flow => 
+          `${flow.flow_name}\n${flow.flow_description}`
+      ).join('\n\n');
+
       await client.replyMessage(event.replyToken, [
           { 
+              type: 'flex', 
+              altText: 'ข้อมูลการเขียนผังงานที่ดี',
+              contents: {
+                  type: 'bubble',
+                  body: {
+                      type: 'box',
+                      layout: 'vertical',
+                      contents: Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_name,
+                          weight: 'bold', 
+                          size: 'lg'
+                      })).concat(Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_description,
+                          size: 'md',
+                          wrap: true
+                      })))
+                  }
+              }
+          },
+          { 
               type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, // URL ของภาพ
-              previewImageUrl: Flowchart[0].flow_url // URL ของภาพตัวอย่าง
+              originalContentUrl: Flowchart[0].flow_url, 
+              previewImageUrl: Flowchart[0].flow_url 
           }
       ]);
 
-      return { status: 'Success', response: 'Sent image successfully' };
+      return { status: 'Success', response: flowchartList };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
   }
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId8') {
   const flowchart = await getflowchartFromDB();
 
-  // ฟิลเตอร์หาผังงานระบบ
+  // ฟิลเตอร์หาข้อจำกัดของผังงาน
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 8);
 
   if (Flowchart.length > 0) {
-      // ส่งข้อความพร้อมภาพโดยไม่ใช้ flowchartList
+      const flowchartList = Flowchart.map(flow => 
+          `${flow.flow_name}\n${flow.flow_description}`
+      ).join('\n\n');
+
       await client.replyMessage(event.replyToken, [
           { 
+              type: 'flex', 
+              altText: 'ข้อมูลข้อจำกัดของผังงาน',
+              contents: {
+                  type: 'bubble',
+                  body: {
+                      type: 'box',
+                      layout: 'vertical',
+                      contents: Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_name,
+                          weight: 'bold', 
+                          size: 'lg'
+                      })).concat(Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_description,
+                          size: 'md',
+                          wrap: true
+                      })))
+                  }
+              }
+          },
+          { 
               type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, // URL ของภาพ
-              previewImageUrl: Flowchart[0].flow_url // URL ของภาพตัวอย่าง
+              originalContentUrl: Flowchart[0].flow_url, 
+              previewImageUrl: Flowchart[0].flow_url 
           }
       ]);
 
-      return { status: 'Success', response: 'Sent image successfully' };
+      return { status: 'Success', response: flowchartList };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
   }
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId9') {
   const flowchart = await getflowchartFromDB();
 
-  // ฟิลเตอร์หาผังงานระบบ
+  // ฟิลเตอร์หาหลักในการเขียนผังงาน
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 9);
 
   if (Flowchart.length > 0) {
-      // ส่งข้อความพร้อมภาพโดยไม่ใช้ flowchartList
+      const flowchartList = Flowchart.map(flow => 
+          `${flow.flow_name}\n${flow.flow_description}`
+      ).join('\n\n');
+
       await client.replyMessage(event.replyToken, [
           { 
+              type: 'flex', 
+              altText: 'ข้อมูลหลักในการเขียนผังงาน',
+              contents: {
+                  type: 'bubble',
+                  body: {
+                      type: 'box',
+                      layout: 'vertical',
+                      contents: Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_name,
+                          weight: 'bold', 
+                          size: 'lg'
+                      })).concat(Flowchart.map(flow => ({
+                          type: 'text',
+                          text: flow.flow_description,
+                          size: 'md',
+                          wrap: true
+                      })))
+                  }
+              }
+          },
+          { 
               type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, // URL ของภาพ
-              previewImageUrl: Flowchart[0].flow_url // URL ของภาพตัวอย่าง
+              originalContentUrl: Flowchart[0].flow_url, 
+              previewImageUrl: Flowchart[0].flow_url 
           }
       ]);
 
-      return { status: 'Success', response: 'Sent image successfully' };
+      return { status: 'Success', response: flowchartList };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
