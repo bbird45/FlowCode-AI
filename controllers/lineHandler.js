@@ -40,7 +40,7 @@ if (matchedIntent.intent_name === 'flowId1') {
 
       await client.replyMessage(event.replyToken, {
           type: 'text',
-          text: `📘 ${flow.flow_name}\nคลิกปุ่มด้านล่างเพื่อดูข้อมูลเพิ่มเติม`,
+          text: `${flow.flow_name}\nคลิกปุ่มด้านล่างเพื่อดูข้อมูลเพิ่มเติม`,
           quickReply: {
               items: [
                   {
@@ -48,7 +48,7 @@ if (matchedIntent.intent_name === 'flowId1') {
                       action: {
                           type: 'uri',
                           label: 'ข้อมูลเพิ่มเติม',
-                          uri: pseudo.flow_url // URL ที่ต้องการ
+                          uri: flow.flow_url // URL ที่ต้องการ
                       }
                   }
               ]
