@@ -618,17 +618,21 @@ if (matchedIntent.intent_name === 'flowId17') {
           `${flow.flow_name}\n${flow.flow_description}`
       ).join('\n\n');
 
+      // แยก URL ของภาพออกมาเป็นอาร์เรย์
       const flowImages = Flowchart.map(flow => {
-          const urls = flow.flow_url.split(',');  
+          const urls = flow.flow_url.split(',');  // แยก URL ที่มี ',' เป็นหลายๆ URL
           return urls.map(url => ({
               type: 'image',
-              originalContentUrl: url.trim(), 
-              previewImageUrl: url.trim() 
+              originalContentUrl: url.trim(),  // URL ของภาพจริง
+              previewImageUrl: url.trim()      // URL สำหรับภาพตัวอย่าง
           }));
-      }).flat(); 
+      }).flat();  // ใช้ flat() เพื่อให้เป็นอาร์เรย์เดียว
+
+      console.log(flowImages);  // ตรวจสอบให้แน่ใจว่าเราได้รับอาร์เรย์ของภาพที่ถูกต้อง
+
       const messages = [
-          { type: 'text', text: flowchartList }, 
-          ...flowImages 
+          { type: 'text', text: flowchartList },  // ส่งข้อความ
+          ...flowImages  // ส่งภาพทั้งหมด
       ];
 
       await client.replyMessage(event.replyToken, messages);
@@ -638,6 +642,7 @@ if (matchedIntent.intent_name === 'flowId17') {
       return { status: 'No' };
   }
 }
+
 
 //-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId18') {
