@@ -847,7 +847,6 @@ if (matchedIntent.intent_name === 'pseudoId1') {
       // ส่ง Flex Message
       await client.replyMessage(event.replyToken, {
           type: 'flex',
-          altText: 'เนื้อหารหัสเทียม',
           contents: {
               type: 'bubble',
               body: {
