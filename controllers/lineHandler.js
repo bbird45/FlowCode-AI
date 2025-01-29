@@ -562,6 +562,11 @@ if (matchedIntent.intent_name === 'flowId14') {  // ตรวจสอบ intent
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 14);
 
   if (Flowchart.length > 0) {
+      // สร้างรายการข้อความ
+      const flowchartList = Flowchart.map(flow => 
+          `${flow.flow_name}\n${flow.flow_description}`
+      ).join('\n\n');
+
       // แยก URL ออกเป็นหลายๆ อัน
       const flowImages = Flowchart.map(flow => {
           const urls = flow.flow_url.split(','); // แยก URL ที่คั่นด้วยเครื่องหมาย , 
@@ -572,9 +577,14 @@ if (matchedIntent.intent_name === 'flowId14') {  // ตรวจสอบ intent
           }));
       }).flat(); // ใช้ .flat() เพื่อให้รวมเป็น array เดียว
 
-      // ส่งภาพหลายๆ อัน
-      await client.replyMessage(event.replyToken, flowImages);
-      return { status: 'Success', response: 'Sent images successfully' };
+      // ส่งข้อความพร้อมภาพหลายภาพ
+      const messages = [
+          { type: 'text', text: flowchartList }, // ส่งข้อความ
+          ...flowImages // ส่งภาพจาก URL ที่แยกออก
+      ];
+
+      await client.replyMessage(event.replyToken, messages);
+      return { status: 'Success', response: flowchartList };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
