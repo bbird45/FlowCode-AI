@@ -31,55 +31,31 @@ async function handleEvent(event, intentsData) {
 //-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId1') {
   const flowchart = await getflowchartFromDB();
-
-  // ฟิลเตอร์หาผังงาน
+  
+  // ฟิลเตอร์หาเนื้อหารหัสเทียม
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 1);
 
   if (Flowchart.length > 0) {
       const flow = Flowchart[0]; // ใช้ข้อมูลตัวแรกที่พบ
 
-      // ส่ง Flex Message
       await client.replyMessage(event.replyToken, {
-          type: 'flex',
-          altText: 'เนื้อหาผังงาน',
-          contents: {
-              type: 'bubble',
-              body: {
-                  type: 'box',
-                  layout: 'vertical',
-                  contents: [
-                      {
-                          type: 'text',
-                          text: `${flow.flow_name}`,
-                          weight: 'bold',
-                          size: 'lg'
-                      },
-                      {
-                          type: 'text',
-                          text: `${flow.flow_description}`,
-                          size: 'md'
+          type: 'text',
+          text: `${flow.flow_name}\n${flow.flow_description}\nคลิกดูเพิ่มเติมได้ที่ข้อมูลเพิ่มเติม`,
+          quickReply: {
+              items: [
+                  {
+                      type: 'action',
+                      action: {
+                          type: 'uri',
+                          label: 'ข้อมูลเพิ่มเติม',
+                          uri: flow.flow_url // URL ที่ต้องการ
                       }
-                  ]
-              },
-              footer: {
-                  type: 'box',
-                  layout: 'vertical',
-                  contents: [
-                      {
-                          type: 'button',
-                          action: {
-                              type: 'uri',
-                              label: 'ข้อมูลเพิ่มเติม',
-                              uri: flow.flow_url // URL ที่ต้องการ
-                          },
-                          height: 'sm'
-                      }
-                  ]
-              }
+                  }
+              ]
           }
       });
 
-      return { status: 'Success', response: 'Flex Message Sent' };
+      return { status: 'Success', response: 'Quick Reply Sent' };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
@@ -738,38 +714,76 @@ if (matchedIntent.intent_name === 'flowId27') {
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
-if (matchedIntent.intent_name === 'flowId28') {
+if (matchedIntent.intent_name === 'flowId28') {  // ตรวจสอบ intent_name
   const flowchart = await getflowchartFromDB();
+
+  // ฟิลเตอร์หาผังงานระบบ
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 28);
 
   if (Flowchart.length > 0) {
-    const flowchartList = Flowchart.map(flow => 
-        `${flow.flow_description}`
-    ).join('\n\n');
+      // สร้างรายการข้อความ
+      const flowchartList = Flowchart.map(flow => 
+          `${flow.flow_name}`
+      ).join('\n\n');
 
-    await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
-    return { status: 'Success', response: flowchartList };
+      // แยก URL ออกเป็นหลายๆ อัน
+      const flowImages = Flowchart.map(flow => {
+          const urls = flow.flow_url.split(','); // แยก URL ที่คั่นด้วยเครื่องหมาย , 
+          return urls.map(url => ({
+              type: 'image',
+              originalContentUrl: url.trim(), // URL ของภาพ
+              previewImageUrl: url.trim() // URL ของภาพตัวอย่าง
+          }));
+      }).flat(); // ใช้ .flat() เพื่อให้รวมเป็น array เดียว
+
+      // ส่งข้อความพร้อมภาพหลายภาพ
+      const messages = [
+          { type: 'text', text: flowchartList }, // ส่งข้อความ
+          ...flowImages // ส่งภาพจาก URL ที่แยกออก
+      ];
+
+      await client.replyMessage(event.replyToken, messages);
+      return { status: 'Success', response: flowchartList };
   } else {
-    await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-    return { status: 'No' };
+      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+      return { status: 'No' };
   }
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
-if (matchedIntent.intent_name === 'flowId29') {
+if (matchedIntent.intent_name === 'flowId29') {  // ตรวจสอบ intent_name
   const flowchart = await getflowchartFromDB();
+
+  // ฟิลเตอร์หาผังงานระบบ
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 29);
 
   if (Flowchart.length > 0) {
-    const flowchartList = Flowchart.map(flow => 
-        `${flow.flow_description}`
-    ).join('\n\n');
+      // สร้างรายการข้อความ
+      const flowchartList = Flowchart.map(flow => 
+          `${flow.flow_name}`
+      ).join('\n\n');
 
-    await client.replyMessage(event.replyToken, { type: 'text', text: flowchartList });
-    return { status: 'Success', response: flowchartList };
+      // แยก URL ออกเป็นหลายๆ อัน
+      const flowImages = Flowchart.map(flow => {
+          const urls = flow.flow_url.split(','); // แยก URL ที่คั่นด้วยเครื่องหมาย , 
+          return urls.map(url => ({
+              type: 'image',
+              originalContentUrl: url.trim(), // URL ของภาพ
+              previewImageUrl: url.trim() // URL ของภาพตัวอย่าง
+          }));
+      }).flat(); // ใช้ .flat() เพื่อให้รวมเป็น array เดียว
+
+      // ส่งข้อความพร้อมภาพหลายภาพ
+      const messages = [
+          { type: 'text', text: flowchartList }, // ส่งข้อความ
+          ...flowImages // ส่งภาพจาก URL ที่แยกออก
+      ];
+
+      await client.replyMessage(event.replyToken, messages);
+      return { status: 'Success', response: flowchartList };
   } else {
-    await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-    return { status: 'No' };
+      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+      return { status: 'No' };
   }
 }
 
