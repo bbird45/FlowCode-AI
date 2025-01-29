@@ -31,8 +31,8 @@ async function handleEvent(event, intentsData) {
 //-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId1') {
   const flowchart = await getflowchartFromDB();
-  
-  // ฟิลเตอร์หาเนื้อหาผังงาน
+
+  // ฟิลเตอร์หาผังงาน
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 1);
 
   if (Flowchart.length > 0) {
@@ -58,6 +58,13 @@ if (matchedIntent.intent_name === 'flowId1') {
                           type: 'text',
                           text: `${flow.flow_description}`,
                           size: 'md'
+                      },
+                      {
+                          type: 'image',
+                          url: flow.flow_url, // URL ของภาพ
+                          size: 'full',
+                          aspectMode: 'cover',
+                          aspectRatio: '20:13'
                       }
                   ]
               },
@@ -85,6 +92,7 @@ if (matchedIntent.intent_name === 'flowId1') {
       return { status: 'No' };
   }
 }
+
 
       
 //-----------------------------------------------------------------------------------------------------------------------------
