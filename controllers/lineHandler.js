@@ -31,31 +31,55 @@ async function handleEvent(event, intentsData) {
 //-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'flowId1') {
   const flowchart = await getflowchartFromDB();
-  
-  // ฟิลเตอร์หาเนื้อหารหัสเทียม
+
+  // ฟิลเตอร์หาผังงาน
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 1);
 
   if (Flowchart.length > 0) {
       const flow = Flowchart[0]; // ใช้ข้อมูลตัวแรกที่พบ
 
+      // ส่ง Flex Message
       await client.replyMessage(event.replyToken, {
-          type: 'text',
-          text: `${flow.flow_name}\nคลิกปุ่มด้านล่างเพื่อดูข้อมูลเพิ่มเติม`,
-          quickReply: {
-              items: [
-                  {
-                      type: 'action',
-                      action: {
-                          type: 'uri',
-                          label: 'ข้อมูลเพิ่มเติม',
-                          uri: flow.flow_url // URL ที่ต้องการ
+          type: 'flex',
+          altText: 'เนื้อหาผังงาน',
+          contents: {
+              type: 'bubble',
+              body: {
+                  type: 'box',
+                  layout: 'vertical',
+                  contents: [
+                      {
+                          type: 'text',
+                          text: `${flow.flow_name}`,
+                          weight: 'bold',
+                          size: 'lg'
+                      },
+                      {
+                          type: 'text',
+                          text: `${flow.flow_description}`,
+                          size: 'md'
                       }
-                  }
-              ]
+                  ]
+              },
+              footer: {
+                  type: 'box',
+                  layout: 'vertical',
+                  contents: [
+                      {
+                          type: 'button',
+                          action: {
+                              type: 'uri',
+                              label: 'ข้อมูลเพิ่มเติม',
+                              uri: flow.flow_url // URL ที่ต้องการ
+                          },
+                          height: 'sm'
+                      }
+                  ]
+              }
           }
       });
 
-      return { status: 'Success', response: 'Quick Reply Sent' };
+      return { status: 'Success', response: 'Flex Message Sent' };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
