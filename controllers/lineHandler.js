@@ -798,24 +798,24 @@ if (matchedIntent.intent_name === 'flowId456') {
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId1') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หาเนื้อหารหัสเทียม
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 1);
+if (matchedIntent.intent_name === 'pseudoId1') {
+  const pseudocode = await getPseudocodeFromDB();
+  
+  // ฟิลเตอร์หาเนื้อหารหัสเทียม
+  const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 1);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `📘 ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+  if (Pseudocode.length > 0) {
+      const pseudocodeList = Pseudocode.map(pseudo => 
+          `📘 ${pseudo.Pseudo_name}\n🔗 [ข้อมูลเพิ่มเติม](${pseudo.Pseudo_URL})`
+      ).join('\n\n');
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
-        } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+      await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
+      return { status: 'Success', response: pseudocodeList };
+  } else {
+      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+      return { status: 'No' };
+  }
+}
 
 //-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'pseudoId2') {
