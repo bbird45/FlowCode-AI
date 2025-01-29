@@ -468,60 +468,24 @@ if (matchedIntent.intent_name === 'flowId11') {
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 11);
 
   if (Flowchart.length > 0) {
-      const flow = Flowchart[0]; // เอาเฉพาะข้อมูลตัวแรกมาใช้
+      const flow = Flowchart[0]; // เอาข้อมูลตัวแรกมาใช้
       const imageUrls = flow.flow_url.split(',').map(url => url.trim()); // แยก URL ของรูป
 
-      // สร้าง Flex Message (bubble เดียว)
-      const flexMessage = {
-          type: 'bubble',
-          body: {
-              type: 'box',
-              layout: 'horizontal',  // ใช้แนวนอน
-              contents: [
-                  {
-                      type: 'box',
-                      layout: 'vertical',
-                      flex: 2,  // กำหนดให้ส่วนข้อความกว้างกว่า
-                      contents: [
-                          {
-                              type: 'text',
-                              text: flow.flow_name, // แสดงชื่อแค่ครั้งเดียว
-                              weight: 'bold',
-                              size: 'lg',
-                              wrap: true
-                          },
-                          {
-                              type: 'text',
-                              text: flow.flow_description, // แสดงคำอธิบายแค่ครั้งเดียว
-                              size: 'md',
-                              wrap: true
-                          }
-                      ]
-                  },
-                  {
-                      type: 'box',
-                      layout: 'vertical',
-                      flex: 3,  // กำหนดให้ส่วนรูปภาพกว้างกว่า
-                      contents: imageUrls.map(url => ({
-                          type: 'image',
-                          url: url,
-                          size: 'full',
-                          aspectRatio: "1:1",
-                          aspectMode: "cover"
-                      }))
-                  }
-              ]
-          }
+      // สร้างข้อความข้อมูล (ใช้ "..." ครอบชื่อเพื่อให้ดูเด่นขึ้น)
+      const textMessage = {
+          type: 'text',
+          text: `📌 ${flow.flow_name}\n\n${flow.flow_description}`
       };
 
-      // ส่ง Flex Message
-      await client.replyMessage(event.replyToken, [
-          { 
-              type: 'flex', 
-              altText: 'ข้อมูลหลักในการเขียนผังงาน',
-              contents: flexMessage
-          }
-      ]);
+      // สร้างข้อความรูปภาพ (ส่งแยกจากข้อความเพื่อให้กดดูได้)
+      const imageMessages = imageUrls.map(url => ({
+          type: 'image',
+          originalContentUrl: url,
+          previewImageUrl: url
+      }));
+
+      // ส่งข้อความและรูปภาพแยกกัน
+      await client.replyMessage(event.replyToken, [textMessage, ...imageMessages]);
 
       return { status: 'Success', response: flow.flow_name };
   } else {
@@ -531,44 +495,62 @@ if (matchedIntent.intent_name === 'flowId11') {
 }
 
 
-if (matchedIntent.intent_name === 'flowId12') {  
+if (matchedIntent.intent_name === 'flowId12') {
   const flowchart = await getflowchartFromDB();
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 12);
 
   if (Flowchart.length > 0) {
-      const flowImages = Flowchart.map(flow => {
-          const urls = flow.flow_url.split(','); 
-          return urls.map(url => ({
-              type: 'image',
-              originalContentUrl: url.trim(), 
-              previewImageUrl: url.trim() 
-          }));
-      }).flat(); 
+      const flow = Flowchart[0]; // เอาข้อมูลตัวแรกมาใช้
+      const imageUrls = flow.flow_url.split(',').map(url => url.trim()); // แยก URL ของรูป
 
-      await client.replyMessage(event.replyToken, flowImages);
-      return { status: 'Success', response: 'Sent images successfully' };
+      // สร้างข้อความข้อมูล (ใช้ "..." ครอบชื่อเพื่อให้ดูเด่นขึ้น)
+      const textMessage = {
+          type: 'text',
+          text: `📌 ${flow.flow_name}\n\n${flow.flow_description}`
+      };
+
+      // สร้างข้อความรูปภาพ (ส่งแยกจากข้อความเพื่อให้กดดูได้)
+      const imageMessages = imageUrls.map(url => ({
+          type: 'image',
+          originalContentUrl: url,
+          previewImageUrl: url
+      }));
+
+      // ส่งข้อความและรูปภาพแยกกัน
+      await client.replyMessage(event.replyToken, [textMessage, ...imageMessages]);
+
+      return { status: 'Success', response: flow.flow_name };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
   }
 }
 
-if (matchedIntent.intent_name === 'flowId13') {  
+if (matchedIntent.intent_name === 'flowId13') {
   const flowchart = await getflowchartFromDB();
   const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 13);
 
   if (Flowchart.length > 0) {
-      const flowImages = Flowchart.map(flow => {
-          const urls = flow.flow_url.split(','); 
-          return urls.map(url => ({
-              type: 'image',
-              originalContentUrl: url.trim(), 
-              previewImageUrl: url.trim() 
-          }));
-      }).flat(); 
+      const flow = Flowchart[0]; // เอาข้อมูลตัวแรกมาใช้
+      const imageUrls = flow.flow_url.split(',').map(url => url.trim()); // แยก URL ของรูป
 
-      await client.replyMessage(event.replyToken, flowImages);
-      return { status: 'Success', response: 'Sent images successfully' };
+      // สร้างข้อความข้อมูล (ใช้ "..." ครอบชื่อเพื่อให้ดูเด่นขึ้น)
+      const textMessage = {
+          type: 'text',
+          text: `📌 ${flow.flow_name}\n\n${flow.flow_description}`
+      };
+
+      // สร้างข้อความรูปภาพ (ส่งแยกจากข้อความเพื่อให้กดดูได้)
+      const imageMessages = imageUrls.map(url => ({
+          type: 'image',
+          originalContentUrl: url,
+          previewImageUrl: url
+      }));
+
+      // ส่งข้อความและรูปภาพแยกกัน
+      await client.replyMessage(event.replyToken, [textMessage, ...imageMessages]);
+
+      return { status: 'Success', response: flow.flow_name };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
