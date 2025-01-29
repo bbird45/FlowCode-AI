@@ -807,29 +807,54 @@ if (matchedIntent.intent_name === 'pseudoId1') {
   if (Pseudocode.length > 0) {
       const pseudo = Pseudocode[0]; // ใช้ข้อมูลตัวแรกที่พบ
 
+      // ส่ง Flex Message
       await client.replyMessage(event.replyToken, {
-          type: 'text',
-          text: `📘 ${pseudo.Pseudo_name}\nคลิกปุ่มด้านล่างเพื่อดูข้อมูลเพิ่มเติม`,
-          quickReply: {
-              items: [
-                  {
-                      type: 'action',
-                      action: {
-                          type: 'uri',
-                          label: 'ข้อมูลเพิ่มเติม',
-                          uri: pseudo.Pseudo_URL // URL ที่ต้องการ
+          type: 'flex',
+          altText: 'เนื้อหารหัสเทียม',
+          contents: {
+              type: 'bubble',
+              body: {
+                  type: 'box',
+                  layout: 'vertical',
+                  contents: [
+                      {
+                          type: 'text',
+                          text: `📘 ${pseudo.Pseudo_name}`,
+                          weight: 'bold',
+                          size: 'lg'
+                      },
+                      {
+                          type: 'text',
+                          text: 'คลิกที่ปุ่มด้านล่างเพื่อดูข้อมูลเพิ่มเติม',
+                          margin: 'md',
+                          size: 'sm'
                       }
-                  }
-              ]
+                  ]
+              },
+              footer: {
+                  type: 'box',
+                  layout: 'vertical',
+                  contents: [
+                      {
+                          type: 'button',
+                          action: {
+                              type: 'uri',
+                              label: 'ข้อมูลเพิ่มเติม',
+                              uri: pseudo.Pseudo_URL // URL ที่ต้องการ
+                          }
+                      }
+                  ]
+              }
           }
       });
 
-      return { status: 'Success', response: 'Quick Reply Sent' };
+      return { status: 'Success', response: 'Flex Message Sent' };
   } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
   }
 }
+
 //-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'pseudoId2') {
         const pseudocode = await getPseudocodeFromDB();
