@@ -621,32 +621,65 @@ if (matchedIntent.intent_name === 'flowId16') {
 
       await client.replyMessage(event.replyToken, messages);
       return { status: 'Success', response: flowchartList };
-  } else {
+    } else {
       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
       return { status: 'No' };
   }
 }
 
-if (matchedIntent.intent_name === 'flowId17') {  
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 17);
-
-  if (Flowchart.length > 0) {
-      const flowImages = Flowchart.map(flow => {
-          const urls = flow.flow_url.split(',');  
-          return urls.map(url => ({
-              type: 'image',
-              originalContentUrl: url.trim(), 
-              previewImageUrl: url.trim() 
-          }));
-      }).flat(); 
-
-      await client.replyMessage(event.replyToken, flowImages);
-      return { status: 'Success', response: 'Sent images successfully' };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+if (matchedIntent.intent_name === 'flowId17') {
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 17);
+  
+    if (Flowchart.length > 0) {
+        const flow = Flowchart[0]; 
+  
+        await client.replyMessage(event.replyToken, {
+            type: 'flex',
+            altText: 'ตัวอย่างการวิเคราะห์ปัญหาและเขียนผังงาน',
+            contents: {
+                type: 'bubble',
+                body: {
+                    type: 'box',
+                    layout: 'vertical',
+                    contents: [
+                        {
+                            type: 'text',
+                            text: `${flow.flow_name}`,
+                            weight: 'bold',
+                            size: 'lg'
+                        },
+                        {
+                            type: 'text',
+                            text: `${flow.flow_description}`,
+                            size: 'md',
+                            wrap: true
+                        }
+                    ]
+                },
+                footer: {
+                    type: 'box',
+                    layout: 'vertical',
+                    contents: [
+                        {
+                            type: 'button',
+                            action: {
+                                type: 'uri',
+                                label: 'ข้อมูลเพิ่มเติม',
+                                uri: flow.flow_url 
+                            },
+                            height: 'sm'
+                        }
+                    ]
+                }
+            }
+        });
+  
+        return { status: 'Success', response: 'Flex Message Sent' };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
 if (matchedIntent.intent_name === 'flowId18') {
@@ -1458,25 +1491,60 @@ if (matchedIntent.intent_name === 'pseudoId1') {
         }
       }
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId13') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หาการทำซ้ำหรือการวนรอบ
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 13);
+if (matchedIntent.intent_name === 'pseudoId13') {
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 13);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `🔄 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+    if (Pseudocode.length > 0) {
+        const pseudo = Pseudocode[0]; 
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+        await client.replyMessage(event.replyToken, {
+            type: 'flex',
+            altText: 'การทำซ้ำหรือการวนรอบ',
+            contents: {
+                type: 'bubble',
+                body: {
+                    type: 'box',
+                    layout: 'vertical',
+                    contents: [
+                        {
+                            type: 'text',
+                            text: `${pseudo.Pseudo_name}`,
+                            weight: 'bold',
+                            size: 'lg'
+                        },
+                        {
+                            type: 'text',
+                            text: `${pseudo.Pseudo_description}`,
+                            size: 'md',
+                            wrap: true
+                        }
+                    ]
+                },
+                footer: {
+                    type: 'box',
+                    layout: 'vertical',
+                    contents: [
+                        {
+                            type: 'button',
+                            action: {
+                                type: 'uri',
+                                label: 'ข้อมูลเพิ่มเติม',
+                                uri: pseudo.Pseudo_URL 
+                            },
+                            height: 'sm'
+                        }
+                    ]
+                }
+            }
+        });
+
+        return { status: 'Success', response: 'Flex Message Sent' };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
 //-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'pseudoId14') {
