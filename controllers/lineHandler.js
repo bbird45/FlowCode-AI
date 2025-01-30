@@ -2208,37 +2208,71 @@ if (matchedIntent.intent_name === 'pseudoId28') {
       }
 
 //-----------------------------------------------------------------------------------------------------------------------------
-
 if (matchedIntent.intent_name === 'admin') {
-    const admin = await getadminFromDB();
-    const Admin = admin.filter(ad => ad.admin_id && ad.admin_id === 1);
-  
-    if (Admin.length > 0) {
-        const ad = Admin[0]; 
-  
-        await client.replyMessage(event.replyToken, {
-            type: 'text',
-            text: `${ad.admin_name}`,
-            quickReply: {
-                items: [
-                    {
-                        type: 'action',
-                        action: {
-                            type: 'uri',
-                            label: 'คลิกที่นี่เพื่อเข้าสู่ระบบแอดมิน',
-                            uri: ad.admin_url 
-                        }
-                    }
-                ]
+    try {
+        // ดึงข้อมูลจากฐานข้อมูล
+        const admin = await getadminFromDB();
+        console.log('Admin Data:', admin);  // ตรวจสอบข้อมูลที่ดึงมา
+
+        // กรองข้อมูลที่มี admin_id = 1
+        const Admin = admin.filter(ad => ad.admin_id && ad.admin_id === 1);
+        console.log('Filtered Admin:', Admin);  // ตรวจสอบข้อมูลที่กรอง
+
+        // ตรวจสอบว่าได้ข้อมูล
+        if (Admin.length > 0) {
+            const ad = Admin[0]; 
+
+            console.log('Admin Details:', ad);  // ตรวจสอบรายละเอียดของแอดมิน
+
+            // ตรวจสอบว่า URI ของ admin_url ถูกต้อง
+            if (!ad.admin_url) {
+                console.error('No admin_url found for this admin');
+                return await client.replyMessage(event.replyToken, { 
+                    type: 'text', 
+                    text: 'ข้อมูล URL ไม่ถูกต้อง' 
+                });
             }
-        });
-  
-        return { status: 'Success', response: 'Quick Reply Sent' };
+
+            // ส่งข้อความตอบกลับ
+            await client.replyMessage(event.replyToken, {
+                type: 'text',
+                text: `${ad.admin_name}`,
+                quickReply: {
+                    items: [
+                        {
+                            type: 'action',
+                            action: {
+                                type: 'uri',
+                                label: 'คลิกที่นี่เพื่อเข้าสู่ระบบแอดมิน',
+                                uri: ad.admin_url 
+                            }
+                        }
+                    ]
+                }
+            });
+
+            return { status: 'Success', response: 'Quick Reply Sent' };
+
         } else {
-            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-        return { status: 'No' };
+            // ถ้าไม่พบข้อมูล
+            console.log('No Admin found with admin_id 1');
+            await client.replyMessage(event.replyToken, { 
+                type: 'text', 
+                text: 'ไม่พบข้อมูลแอดมิน' 
+            });
+            return { status: 'No' };
+        }
+    } catch (error) {
+        // จับข้อผิดพลาด
+        console.error('Error:', error);
+        await client.replyMessage(event.replyToken, { 
+            type: 'text', 
+            text: 'เกิดข้อผิดพลาดขณะส่งคำตอบ' 
+        });
+        return { status: 'Error', response: error.message };
     }
 }
+
 
 //-------------------------------------------------------------------------------------------------------------
         if (matchedIntent.intent_name === 'คำถามที่พบบ่อย') {
