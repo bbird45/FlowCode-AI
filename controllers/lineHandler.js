@@ -2069,7 +2069,7 @@ if (matchedIntent.intent_name === 'pseudoId28') {
     //     }
     //   }
 
-      if (matchedIntent.intent_name === 'quiz') {
+    if (matchedIntent.intent_name === 'quiz') {
         const quizion = await getQuizFromDB();
     
         // กรองข้อมูลที่ต้องการ
@@ -2081,24 +2081,29 @@ if (matchedIntent.intent_name === 'pseudoId28') {
                 body: {
                     type: 'box',
                     layout: 'vertical',
+                    spacing: 'md',
                     contents: Quiz.map(quiz => ({
                         type: 'box',
                         layout: 'horizontal',
+                        spacing: 'md',
                         contents: [
                             {
                                 type: 'text',
                                 text: quiz.Quiz_name,
                                 weight: 'bold',
-                                size: 'lg'
+                                size: 'md',
+                                flex: 3
                             },
                             {
                                 type: 'button',
-                                style: 'primary',
+                                style: 'link',  // ปรับเป็นลิงก์เพื่อให้ปุ่มเล็กลง
+                                height: 'sm',  // ลดขนาดของปุ่ม
                                 action: {
                                     type: 'uri',
-                                    label: 'เข้าสู่ระบบ',  // คำที่แสดงในปุ่ม
-                                    uri: quiz.Quiz_link  // ลิงก์ที่แตกต่างกัน
-                                }
+                                    label: 'เข้าสอบ',  // ทำให้ดูเล็กลงโดยใช้ไอคอน
+                                    uri: quiz.Quiz_link
+                                },
+                                flex: 1
                             }
                         ]
                     }))
@@ -2113,12 +2118,13 @@ if (matchedIntent.intent_name === 'pseudoId28') {
                 }
             ]);
     
-            return { status: 'Success', response: 'Quick Reply Sent' };
+            return { status: 'Success', response: 'Flex Message Sent' };
         } else {
             await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
             return { status: 'No' };
         }
     }
+    
     
 
       if (matchedIntent.intent_name === 'quizId1') {
