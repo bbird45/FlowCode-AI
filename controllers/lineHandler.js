@@ -2460,12 +2460,12 @@ if (matchedIntent.intent_name === 'quizId24') {
             type: 'carousel',
             contents: Quiz.map(quiz => ({
                 type: 'bubble',
-                hero: {  // ใช้ hero เพื่อให้รูปแสดงเต็มขอบ
+                hero: {
                     type: 'image',
-                    url: quiz.Quiz_img,  // ใส่ URL รูปภาพ
-                    size: 'full',        // ทำให้ขนาดรูปใหญ่สุด
-                    aspectRatio: '16:9', // กำหนดอัตราส่วนภาพ
-                    aspectMode: 'cover'  // แสดงเต็มโดยไม่มีขอบขาว
+                    url: quiz.Quiz_img, // รูปของแต่ละข้อสอบ
+                    size: 'full',
+                    aspectRatio: '3:4', // ใช้สัดส่วนที่ใกล้เคียงกับ A4
+                    aspectMode: 'cover' // ปรับให้รูปเต็มพื้นที่
                 },
                 body: {
                     type: 'box',
@@ -2474,19 +2474,18 @@ if (matchedIntent.intent_name === 'quizId24') {
                     contents: [
                         {
                             type: 'text',
-                            text: quiz.Quiz_name,  // ชื่อข้อสอบ
+                            text: quiz.Quiz_name, // ชื่อข้อสอบ
                             weight: 'bold',
                             size: 'lg',
-                            wrap: true,
-                            align: 'center'
+                            wrap: true
                         },
                         {
                             type: 'button',
-                            style: 'link',
+                            style: 'primary',
                             height: 'sm',
                             action: {
                                 type: 'uri',
-                                label: '📖 กดที่นี่เพื่อทำข้อสอบ',  
+                                label: '📖 ทำข้อสอบ',
                                 uri: quiz.Quiz_link
                             }
                         }
@@ -2509,6 +2508,7 @@ if (matchedIntent.intent_name === 'quizId24') {
         return { status: 'No' };
     }
 }
+
 
 
 
