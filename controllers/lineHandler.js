@@ -2059,6 +2059,13 @@ if (matchedIntent.intent_name === 'quiz') {
             type: 'carousel', 
             contents: quizion.map(quiz => ({
                 type: 'bubble',
+                hero: {
+                    type: 'image',
+                    url: quiz.Quiz_img,  
+                    size: 'full',
+                    aspectRatio: '3:4',  
+                    aspectMode: 'cover'  
+                },
                 body: {
                     type: 'box',
                     layout: 'vertical',
@@ -2073,11 +2080,11 @@ if (matchedIntent.intent_name === 'quiz') {
                         },
                         {
                             type: 'button',
-                            style: 'link', 
+                            style: 'primary',  
                             height: 'sm',
                             action: {
                                 type: 'uri',
-                                label: 'กดที่นี่เพื่อทำข้อสอบ', 
+                                label: 'กดที่นี่เพื่อทำข้อสอบ',
                                 uri: quiz.Quiz_link
                             }
                         }
@@ -2100,14 +2107,22 @@ if (matchedIntent.intent_name === 'quiz') {
         return { status: 'No' };
     }
 }
+
     
 if (matchedIntent.intent_name === 'quizId1') {
     const quizion = await getQuizFromDB();
-    const Quiz = quizion.find(quiz => quiz.Quiz_id === 1); 
+    const Quiz = quizion.find(quiz => quiz.Quiz_id === 1);
 
     if (Quiz) {
         const flexMessage = {
             type: 'bubble',
+            hero: {
+                type: 'image',
+                url: Quiz.Quiz_img, 
+                size: 'full',
+                aspectRatio: '3:4',
+                aspectMode: 'cover'
+            },
             body: {
                 type: 'box',
                 layout: 'vertical',
@@ -2122,11 +2137,11 @@ if (matchedIntent.intent_name === 'quizId1') {
                     },
                     {
                         type: 'button',
-                        style: 'link', 
+                        style: 'primary',
                         height: 'sm',
                         action: {
                             type: 'uri',
-                            label: 'กดที่นี่เพื่อทำข้อสอบ',
+                            label: '📖 ทำข้อสอบ',
                             uri: Quiz.Quiz_link
                         }
                     }
@@ -2152,11 +2167,18 @@ if (matchedIntent.intent_name === 'quizId1') {
 
 if (matchedIntent.intent_name === 'quizId2') {
     const quizion = await getQuizFromDB();
-    const Quiz = quizion.find(quiz => quiz.Quiz_id === 2); 
+    const Quiz = quizion.find(quiz => quiz.Quiz_id === 2);
 
     if (Quiz) {
         const flexMessage = {
             type: 'bubble',
+            hero: {
+                type: 'image',
+                url: Quiz.Quiz_img, 
+                size: 'full',
+                aspectRatio: '3:4',
+                aspectMode: 'cover'
+            },
             body: {
                 type: 'box',
                 layout: 'vertical',
@@ -2171,11 +2193,11 @@ if (matchedIntent.intent_name === 'quizId2') {
                     },
                     {
                         type: 'button',
-                        style: 'link',  
+                        style: 'primary',
                         height: 'sm',
                         action: {
                             type: 'uri',
-                            label: 'กดที่นี่เพื่อทำข้อสอบ',  
+                            label: '📖 ทำข้อสอบ',
                             uri: Quiz.Quiz_link
                         }
                     }
@@ -2200,11 +2222,18 @@ if (matchedIntent.intent_name === 'quizId2') {
 
 if (matchedIntent.intent_name === 'quizId3') {
     const quizion = await getQuizFromDB();
-    const Quiz = quizion.find(quiz => quiz.Quiz_id === 3); 
+    const Quiz = quizion.find(quiz => quiz.Quiz_id === 3);
 
     if (Quiz) {
         const flexMessage = {
             type: 'bubble',
+            hero: {
+                type: 'image',
+                url: Quiz.Quiz_img, 
+                size: 'full',
+                aspectRatio: '3:4',
+                aspectMode: 'cover'
+            },
             body: {
                 type: 'box',
                 layout: 'vertical',
@@ -2219,11 +2248,11 @@ if (matchedIntent.intent_name === 'quizId3') {
                     },
                     {
                         type: 'button',
-                        style: 'link',  
+                        style: 'primary',
                         height: 'sm',
                         action: {
                             type: 'uri',
-                            label: 'กดที่นี่เพื่อทำข้อสอบ',  
+                            label: '📖 ทำข้อสอบ',
                             uri: Quiz.Quiz_link
                         }
                     }
@@ -2248,11 +2277,18 @@ if (matchedIntent.intent_name === 'quizId3') {
 
 if (matchedIntent.intent_name === 'quizId4') {
     const quizion = await getQuizFromDB();
-    const Quiz = quizion.find(quiz => quiz.Quiz_id === 4); 
+    const Quiz = quizion.find(quiz => quiz.Quiz_id === 4);
 
     if (Quiz) {
         const flexMessage = {
             type: 'bubble',
+            hero: {
+                type: 'image',
+                url: Quiz.Quiz_img, 
+                size: 'full',
+                aspectRatio: '3:4',
+                aspectMode: 'cover'
+            },
             body: {
                 type: 'box',
                 layout: 'vertical',
@@ -2267,11 +2303,11 @@ if (matchedIntent.intent_name === 'quizId4') {
                     },
                     {
                         type: 'button',
-                        style: 'link',  
+                        style: 'primary',
                         height: 'sm',
                         action: {
                             type: 'uri',
-                            label: 'กดที่นี่เพื่อทำข้อสอบ',  
+                            label: '📖 ทำข้อสอบ',
                             uri: Quiz.Quiz_link
                         }
                     }
@@ -2288,14 +2324,14 @@ if (matchedIntent.intent_name === 'quizId4') {
         ]);
 
         return { status: 'Success', response: 'Flex Message Sent' };
-        } else {
-            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+    } else {
+        await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
         return { status: 'No' };
     }
 }
 
-if (matchedIntent.intent_name === 'quizId12') {
 
+if (matchedIntent.intent_name === 'quizId12') {
     const quizion = await getQuizFromDB();
     const Quiz = quizion.filter(quiz => quiz.Quiz_id === 1 || quiz.Quiz_id === 2);
 
@@ -2304,168 +2340,12 @@ if (matchedIntent.intent_name === 'quizId12') {
             type: 'carousel',
             contents: Quiz.map(quiz => ({
                 type: 'bubble',
-                body: {
-                    type: 'box',
-                    layout: 'vertical',
-                    spacing: 'md',
-                    contents: [
-                        {
-                            type: 'text',
-                            text: `${quiz.Quiz_name}`,
-                            weight: 'bold',
-                            size: 'lg',
-                            wrap: true
-                        },
-                        {
-                            type: 'button',
-                            style: 'link',
-                            height: 'sm',
-                            action: {
-                                type: 'uri',
-                                label: 'กดที่นี่เพื่อทำข้อสอบ',  
-                                uri: quiz.Quiz_link
-                            }
-                        }
-                    ]
-                }
-            }))
-        };
-
-        await client.replyMessage(event.replyToken, [
-            {
-                type: 'flex',
-                altText: 'เลือกข้อสอบที่ต้องการทำ',
-                contents: flexMessage
-            }
-        ]);
-
-        return { status: 'Success', response: 'Flex Message Sent' };
-    } else {
-        await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-        return { status: 'No' };
-    }
-}
-
-
-if (matchedIntent.intent_name === 'quizId34') {
-
-    const quizion = await getQuizFromDB();
-    const Quiz = quizion.filter(quiz => quiz.Quiz_id === 3 || quiz.Quiz_id === 4);
-
-    if (Quiz.length > 0) {
-        const flexMessage = {
-            type: 'carousel',
-            contents: Quiz.map(quiz => ({
-                type: 'bubble',
-                body: {
-                    type: 'box',
-                    layout: 'vertical',
-                    spacing: 'md',
-                    contents: [
-                        {
-                            type: 'text',
-                            text: `${quiz.Quiz_name}`,
-                            weight: 'bold',
-                            size: 'lg',
-                            wrap: true
-                        },
-                        {
-                            type: 'button',
-                            style: 'link',
-                            height: 'sm',
-                            action: {
-                                type: 'uri',
-                                label: 'กดที่นี่เพื่อทำข้อสอบ',  
-                                uri: quiz.Quiz_link
-                            }
-                        }
-                    ]
-                }
-            }))
-        };
-
-        await client.replyMessage(event.replyToken, [
-            {
-                type: 'flex',
-                altText: 'เลือกข้อสอบที่ต้องการทำ',
-                contents: flexMessage
-            }
-        ]);
-
-        return { status: 'Success', response: 'Flex Message Sent' };
-    } else {
-        await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-        return { status: 'No' };
-    }
-}
-
-if (matchedIntent.intent_name === 'quizId13') {
-
-    const quizion = await getQuizFromDB();
-    const Quiz = quizion.filter(quiz => quiz.Quiz_id === 1 || quiz.Quiz_id === 3);
-
-    if (Quiz.length > 0) {
-        const flexMessage = {
-            type: 'carousel',
-            contents: Quiz.map(quiz => ({
-                type: 'bubble',
-                body: {
-                    type: 'box',
-                    layout: 'vertical',
-                    spacing: 'md',
-                    contents: [
-                        {
-                            type: 'text',
-                            text: `${quiz.Quiz_name}`,
-                            weight: 'bold',
-                            size: 'lg',
-                            wrap: true
-                        },
-                        {
-                            type: 'button',
-                            style: 'link',
-                            height: 'sm',
-                            action: {
-                                type: 'uri',
-                                label: 'กดที่นี่เพื่อทำข้อสอบ',  
-                                uri: quiz.Quiz_link
-                            }
-                        }
-                    ]
-                }
-            }))
-        };
-
-        await client.replyMessage(event.replyToken, [
-            {
-                type: 'flex',
-                altText: 'เลือกข้อสอบที่ต้องการทำ',
-                contents: flexMessage
-            }
-        ]);
-
-        return { status: 'Success', response: 'Flex Message Sent' };
-    } else {
-        await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-        return { status: 'No' };
-    }
-}
-
-if (matchedIntent.intent_name === 'quizId24') {
-    const quizion = await getQuizFromDB();
-    const Quiz = quizion.filter(quiz => quiz.Quiz_id === 2 || quiz.Quiz_id === 4);
-
-    if (Quiz.length > 0) {
-        const flexMessage = {
-            type: 'carousel',
-            contents: Quiz.map(quiz => ({
-                type: 'bubble',
                 hero: {
                     type: 'image',
-                    url: quiz.Quiz_img, // รูปของแต่ละข้อสอบ
+                    url: quiz.Quiz_img, 
                     size: 'full',
-                    aspectRatio: '3:4', // ใช้สัดส่วนที่ใกล้เคียงกับ A4
-                    aspectMode: 'cover' // ปรับให้รูปเต็มพื้นที่
+                    aspectRatio: '3:4', 
+                    aspectMode: 'cover' 
                 },
                 body: {
                     type: 'box',
@@ -2474,7 +2354,7 @@ if (matchedIntent.intent_name === 'quizId24') {
                     contents: [
                         {
                             type: 'text',
-                            text: quiz.Quiz_name, // ชื่อข้อสอบ
+                            text: quiz.Quiz_name, 
                             weight: 'bold',
                             size: 'lg',
                             wrap: true
@@ -2509,8 +2389,179 @@ if (matchedIntent.intent_name === 'quizId24') {
     }
 }
 
+if (matchedIntent.intent_name === 'quizId34') {
+    const quizion = await getQuizFromDB();
+    const Quiz = quizion.filter(quiz => quiz.Quiz_id === 3 || quiz.Quiz_id === 4);
 
+    if (Quiz.length > 0) {
+        const flexMessage = {
+            type: 'carousel',
+            contents: Quiz.map(quiz => ({
+                type: 'bubble',
+                hero: {
+                    type: 'image',
+                    url: quiz.Quiz_img, 
+                    size: 'full',
+                    aspectRatio: '3:4', 
+                    aspectMode: 'cover' 
+                },
+                body: {
+                    type: 'box',
+                    layout: 'vertical',
+                    spacing: 'md',
+                    contents: [
+                        {
+                            type: 'text',
+                            text: quiz.Quiz_name, 
+                            weight: 'bold',
+                            size: 'lg',
+                            wrap: true
+                        },
+                        {
+                            type: 'button',
+                            style: 'primary',
+                            height: 'sm',
+                            action: {
+                                type: 'uri',
+                                label: '📖 ทำข้อสอบ',
+                                uri: quiz.Quiz_link
+                            }
+                        }
+                    ]
+                }
+            }))
+        };
 
+        await client.replyMessage(event.replyToken, [
+            {
+                type: 'flex',
+                altText: 'เลือกข้อสอบที่ต้องการทำ',
+                contents: flexMessage
+            }
+        ]);
+
+        return { status: 'Success', response: 'Flex Message Sent' };
+    } else {
+        await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
+
+if (matchedIntent.intent_name === 'quizId13') {
+    const quizion = await getQuizFromDB();
+    const Quiz = quizion.filter(quiz => quiz.Quiz_id === 1 || quiz.Quiz_id === 3);
+
+    if (Quiz.length > 0) {
+        const flexMessage = {
+            type: 'carousel',
+            contents: Quiz.map(quiz => ({
+                type: 'bubble',
+                hero: {
+                    type: 'image',
+                    url: quiz.Quiz_img, 
+                    size: 'full',
+                    aspectRatio: '3:4', 
+                    aspectMode: 'cover' 
+                },
+                body: {
+                    type: 'box',
+                    layout: 'vertical',
+                    spacing: 'md',
+                    contents: [
+                        {
+                            type: 'text',
+                            text: quiz.Quiz_name, 
+                            weight: 'bold',
+                            size: 'lg',
+                            wrap: true
+                        },
+                        {
+                            type: 'button',
+                            style: 'primary',
+                            height: 'sm',
+                            action: {
+                                type: 'uri',
+                                label: '📖 ทำข้อสอบ',
+                                uri: quiz.Quiz_link
+                            }
+                        }
+                    ]
+                }
+            }))
+        };
+
+        await client.replyMessage(event.replyToken, [
+            {
+                type: 'flex',
+                altText: 'เลือกข้อสอบที่ต้องการทำ',
+                contents: flexMessage
+            }
+        ]);
+
+        return { status: 'Success', response: 'Flex Message Sent' };
+    } else {
+        await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
+
+if (matchedIntent.intent_name === 'quizId24') {
+    const quizion = await getQuizFromDB();
+    const Quiz = quizion.filter(quiz => quiz.Quiz_id === 2 || quiz.Quiz_id === 4);
+
+    if (Quiz.length > 0) {
+        const flexMessage = {
+            type: 'carousel',
+            contents: Quiz.map(quiz => ({
+                type: 'bubble',
+                hero: {
+                    type: 'image',
+                    url: quiz.Quiz_img, 
+                    size: 'full',
+                    aspectRatio: '3:4', 
+                    aspectMode: 'cover' 
+                },
+                body: {
+                    type: 'box',
+                    layout: 'vertical',
+                    spacing: 'md',
+                    contents: [
+                        {
+                            type: 'text',
+                            text: quiz.Quiz_name, 
+                            weight: 'bold',
+                            size: 'lg',
+                            wrap: true
+                        },
+                        {
+                            type: 'button',
+                            style: 'primary',
+                            height: 'sm',
+                            action: {
+                                type: 'uri',
+                                label: '📖 ทำข้อสอบ',
+                                uri: quiz.Quiz_link
+                            }
+                        }
+                    ]
+                }
+            }))
+        };
+
+        await client.replyMessage(event.replyToken, [
+            {
+                type: 'flex',
+                altText: 'เลือกข้อสอบที่ต้องการทำ',
+                contents: flexMessage
+            }
+        ]);
+
+        return { status: 'Success', response: 'Flex Message Sent' };
+    } else {
+        await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
 //-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'admin') {
