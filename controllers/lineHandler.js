@@ -2451,7 +2451,7 @@ if (matchedIntent.intent_name === 'quizId13') {
     }
 }
 
-if (matchedIntent.intent_name === 'quizId2') {
+if (matchedIntent.intent_name === 'quizId24') {
 
     const quizion = await getQuizFromDB();
     const Quiz = quizion.filter(quiz => quiz.Quiz_id === 2 || quiz.Quiz_id === 4);
