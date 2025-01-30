@@ -84,547 +84,454 @@ if (matchedIntent.intent_name === 'flowId1') {
   }
 }
       
-if (matchedIntent.intent_name === 'flowId2') {
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 2);
+if (matchedIntent.intent_name === 'flowId2') {  
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 2);
 
-  if (Flowchart.length > 0) {
-      const flowchartList = Flowchart.map(flow => 
-          `${flow.flow_name}\n${flow.flow_description}`
-      ).join('\n\n');
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      await client.replyMessage(event.replyToken, [
-          { 
-              type: 'flex', 
-              altText: 'ข้อมูลความหมายผังงาน',
-              contents: {
-                  type: 'bubble',
-                  body: {
-                      type: 'box',
-                      layout: 'vertical',
-                      contents: Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_name,
-                          weight: 'bold', 
-                          size: 'lg'
-                      })).concat(Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_description,
-                          size: 'md',
-                          wrap: true
-                      })))
-                  }
-              }
-          },
-          { 
-              type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, 
-              previewImageUrl: Flowchart[0].flow_url 
-          }
-      ]);
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      return { status: 'Success', response: flowchartList };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
-if (matchedIntent.intent_name === 'flowId3') {
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 3);
+if (matchedIntent.intent_name === 'flowId3') {  
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 3);
 
-  if (Flowchart.length > 0) {
-      const flowchartList = Flowchart.map(flow => 
-          `${flow.flow_name}\n${flow.flow_description}`
-      ).join('\n\n');
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      await client.replyMessage(event.replyToken, [
-          { 
-              type: 'flex', 
-              altText: 'ข้อมูลผังงานระบบ',
-              contents: {
-                  type: 'bubble',
-                  body: {
-                      type: 'box',
-                      layout: 'vertical',
-                      contents: Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_name,
-                          weight: 'bold', 
-                          size: 'lg'
-                      })).concat(Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_description,
-                          size: 'md',
-                          wrap: true
-                      })))
-                  }
-              }
-          },
-          { 
-              type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, 
-              previewImageUrl: Flowchart[0].flow_url 
-          }
-      ]);
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      return { status: 'Success', response: flowchartList };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
-if (matchedIntent.intent_name === 'flowId4') {
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 4);
+if (matchedIntent.intent_name === 'flowId4') {  
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 4);
 
-  if (Flowchart.length > 0) {
-      const flowchartList = Flowchart.map(flow => 
-          `${flow.flow_name}\n${flow.flow_description}`
-      ).join('\n\n');
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      await client.replyMessage(event.replyToken, [
-          { 
-              type: 'flex', 
-              altText: 'ข้อมูลผังงานโปรแกรม',
-              contents: {
-                  type: 'bubble',
-                  body: {
-                      type: 'box',
-                      layout: 'vertical',
-                      contents: Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_name,
-                          weight: 'bold', 
-                          size: 'lg'
-                      })).concat(Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_description,
-                          size: 'md',
-                          wrap: true
-                      })))
-                  }
-              }
-          },
-          { 
-              type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, 
-              previewImageUrl: Flowchart[0].flow_url 
-          }
-      ]);
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      return { status: 'Success', response: flowchartList };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
-if (matchedIntent.intent_name === 'flowId5') {
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 5);
+if (matchedIntent.intent_name === 'flowId5') {  
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 5);
 
-  if (Flowchart.length > 0) {
-      const flowchartList = Flowchart.map(flow => 
-          `${flow.flow_name}\n${flow.flow_description}`
-      ).join('\n\n');
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      await client.replyMessage(event.replyToken, [
-          { type: 'text', text: flowchartList }, 
-          { 
-              type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, 
-              previewImageUrl: Flowchart[0].flow_url 
-          }
-      ]);
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      return { status: 'Success', response: flowchartList };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
-if (matchedIntent.intent_name === 'flowId6') {
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 6);
+if (matchedIntent.intent_name === 'flowId6') {  
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 6);
 
-  if (Flowchart.length > 0) {
-      const flowchartList = Flowchart.map(flow => 
-          `${flow.flow_name}\n${flow.flow_description}`
-      ).join('\n\n');
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      await client.replyMessage(event.replyToken, [
-          { 
-              type: 'flex', 
-              altText: 'ข้อมูลประโยชน์ของผังงาน',
-              contents: {
-                  type: 'bubble',
-                  body: {
-                      type: 'box',
-                      layout: 'vertical',
-                      contents: Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_name,
-                          weight: 'bold', 
-                          size: 'lg'
-                      })).concat(Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_description,
-                          size: 'md',
-                          wrap: true
-                      })))
-                  }
-              }
-          },
-          { 
-              type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, 
-              previewImageUrl: Flowchart[0].flow_url 
-          }
-      ]);
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      return { status: 'Success', response: flowchartList };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
-if (matchedIntent.intent_name === 'flowId7') {
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 7);
+if (matchedIntent.intent_name === 'flowId7') {  
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 7);
 
-  if (Flowchart.length > 0) {
-      const flowchartList = Flowchart.map(flow => 
-          `${flow.flow_name}\n${flow.flow_description}`
-      ).join('\n\n');
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      await client.replyMessage(event.replyToken, [
-          { 
-              type: 'flex', 
-              altText: 'ข้อมูลการเขียนผังงานที่ดี',
-              contents: {
-                  type: 'bubble',
-                  body: {
-                      type: 'box',
-                      layout: 'vertical',
-                      contents: Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_name,
-                          weight: 'bold', 
-                          size: 'lg'
-                      })).concat(Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_description,
-                          size: 'md',
-                          wrap: true
-                      })))
-                  }
-              }
-          },
-          { 
-              type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, 
-              previewImageUrl: Flowchart[0].flow_url 
-          }
-      ]);
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      return { status: 'Success', response: flowchartList };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
-if (matchedIntent.intent_name === 'flowId8') {
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 8);
+if (matchedIntent.intent_name === 'flowId8') {  
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 8);
 
-  if (Flowchart.length > 0) {
-      const flowchartList = Flowchart.map(flow => 
-          `${flow.flow_name}\n${flow.flow_description}`
-      ).join('\n\n');
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      await client.replyMessage(event.replyToken, [
-          { 
-              type: 'flex', 
-              altText: 'ข้อมูลข้อจำกัดของผังงาน',
-              contents: {
-                  type: 'bubble',
-                  body: {
-                      type: 'box',
-                      layout: 'vertical',
-                      contents: Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_name,
-                          weight: 'bold', 
-                          size: 'lg'
-                      })).concat(Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_description,
-                          size: 'md',
-                          wrap: true
-                      })))
-                  }
-              }
-          },
-          { 
-              type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, 
-              previewImageUrl: Flowchart[0].flow_url 
-          }
-      ]);
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      return { status: 'Success', response: flowchartList };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
-if (matchedIntent.intent_name === 'flowId9') {
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 9);
+if (matchedIntent.intent_name === 'flowId9') {  
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 9);
 
-  if (Flowchart.length > 0) {
-      const flowchartList = Flowchart.map(flow => 
-          `${flow.flow_name}\n${flow.flow_description}`
-      ).join('\n\n');
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      await client.replyMessage(event.replyToken, [
-          { 
-              type: 'flex', 
-              altText: 'ข้อมูลหลักในการเขียนผังงาน',
-              contents: {
-                  type: 'bubble',
-                  body: {
-                      type: 'box',
-                      layout: 'vertical',
-                      contents: Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_name,
-                          weight: 'bold', 
-                          size: 'lg'
-                      })).concat(Flowchart.map(flow => ({
-                          type: 'text',
-                          text: flow.flow_description,
-                          size: 'md',
-                          wrap: true
-                      })))
-                  }
-              }
-          },
-          { 
-              type: 'image', 
-              originalContentUrl: Flowchart[0].flow_url, 
-              previewImageUrl: Flowchart[0].flow_url 
-          }
-      ]);
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      return { status: 'Success', response: flowchartList };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
-if (matchedIntent.intent_name === 'flowId10') {
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 10);
+if (matchedIntent.intent_name === 'flowId10') {  
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 10);
 
-  if (Flowchart.length > 0) {
-      const flow = Flowchart[0]; 
-      const imageUrls = flow.flow_url.split(',').map(url => url.trim()); 
-      const textMessage = {
-          type: 'text',
-          text: `📌 ${flow.flow_name}\n\n${flow.flow_description}`
-      };
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      const imageMessages = imageUrls.map(url => ({
-          type: 'image',
-          originalContentUrl: url,
-          previewImageUrl: url
-      }));
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      await client.replyMessage(event.replyToken, [textMessage, ...imageMessages]);
-      return { status: 'Success', response: flow.flow_name };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
+if (matchedIntent.intent_name === 'flowId11') {  
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 11);
 
-if (matchedIntent.intent_name === 'flowId11') {
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 11);
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-  if (Flowchart.length > 0) {
-      const flow = Flowchart[0]; 
-      const imageUrls = flow.flow_url.split(',').map(url => url.trim());
-      const textMessage = {
-          type: 'text',
-          text: `📌 ${flow.flow_name}\n\n${flow.flow_description}`
-      };
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      const imageMessages = imageUrls.map(url => ({
-          type: 'image',
-          originalContentUrl: url,
-          previewImageUrl: url
-      }));
-
-      await client.replyMessage(event.replyToken, [textMessage, ...imageMessages]);
-      return { status: 'Success', response: flow.flow_name };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
+if (matchedIntent.intent_name === 'flowId12') {  
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 12);
 
-if (matchedIntent.intent_name === 'flowId12') {
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 12);
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-  if (Flowchart.length > 0) {
-      const flow = Flowchart[0]; 
-      const imageUrls = flow.flow_url.split(',').map(url => url.trim());
-      const textMessage = {
-          type: 'text',
-          text: `📌 ${flow.flow_name}\n\n${flow.flow_description}`
-      };
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      const imageMessages = imageUrls.map(url => ({
-          type: 'image',
-          originalContentUrl: url,
-          previewImageUrl: url
-      }));
-
-      await client.replyMessage(event.replyToken, [textMessage, ...imageMessages]);
-      return { status: 'Success', response: flow.flow_name };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
-if (matchedIntent.intent_name === 'flowId13') {
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 13);
+if (matchedIntent.intent_name === 'flowId13') {  
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 13);
 
-  if (Flowchart.length > 0) {
-      const flow = Flowchart[0]; 
-      const imageUrls = flow.flow_url.split(',').map(url => url.trim()); 
-      const textMessage = {
-          type: 'text',
-          text: `📌 ${flow.flow_name}\n\n${flow.flow_description}`
-      };
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      const imageMessages = imageUrls.map(url => ({
-          type: 'image',
-          originalContentUrl: url,
-          previewImageUrl: url
-      }));
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      await client.replyMessage(event.replyToken, [textMessage, ...imageMessages]);
-      return { status: 'Success', response: flow.flow_name };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
 if (matchedIntent.intent_name === 'flowId14') {  
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 14);
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 14);
 
-  if (Flowchart.length > 0) {
-      const flowchartList = Flowchart.map(flow => 
-          `${flow.flow_name}\n${flow.flow_description}`
-      ).join('\n\n');
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      const flowImages = Flowchart.map(flow => {
-          const urls = flow.flow_url.split(',');  
-          return urls.map(url => ({
-              type: 'image',
-              originalContentUrl: url.trim(), 
-              previewImageUrl: url.trim() 
-          }));
-      }).flat(); 
-      const messages = [
-          { type: 'text', text: flowchartList }, 
-          ...flowImages 
-      ];
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      await client.replyMessage(event.replyToken, messages);
-      return { status: 'Success', response: flowchartList };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
 if (matchedIntent.intent_name === 'flowId15') {  
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 15);
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 15);
 
-  if (Flowchart.length > 0) {
-      const flowchartList = Flowchart.map(flow => 
-          `${flow.flow_name}\n${flow.flow_description}`
-      ).join('\n\n');
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      const flowImages = Flowchart.map(flow => {
-          const urls = flow.flow_url.split(',');  
-          return urls.map(url => ({
-              type: 'image',
-              originalContentUrl: url.trim(), 
-              previewImageUrl: url.trim() 
-          }));
-      }).flat(); 
-      const messages = [
-          { type: 'text', text: flowchartList }, 
-          ...flowImages 
-      ];
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      await client.replyMessage(event.replyToken, messages);
-      return { status: 'Success', response: flowchartList };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
 if (matchedIntent.intent_name === 'flowId16') {  
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 16);
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 16);
 
-  if (Flowchart.length > 0) {
-      const flowchartList = Flowchart.map(flow => 
-          `${flow.flow_name}\n${flow.flow_description}`
-      ).join('\n\n');
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      const flowImages = Flowchart.map(flow => {
-          const urls = flow.flow_url.split(',');  
-          return urls.map(url => ({
-              type: 'image',
-              originalContentUrl: url.trim(), 
-              previewImageUrl: url.trim() 
-          }));
-      }).flat(); 
-      const messages = [
-          { type: 'text', text: flowchartList }, 
-          ...flowImages 
-      ];
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      await client.replyMessage(event.replyToken, messages);
-      return { status: 'Success', response: flowchartList };
-    } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
 if (matchedIntent.intent_name === 'flowId17') {
@@ -1186,30 +1093,34 @@ if (matchedIntent.intent_name === 'flowId29') {
   }
 }
 
-if (matchedIntent.intent_name === 'flowId30') {
-  const flowchart = await getflowchartFromDB();
-  const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 30);
+if (matchedIntent.intent_name === 'flowId30') {  
+    const flowchart = await getflowchartFromDB();
+    const Flowchart = flowchart.filter(flow => flow.flow_id && flow.flow_id === 30);
 
-  if (Flowchart.length > 0) {
-      const flow = Flowchart[0]; 
-      const imageUrls = flow.flow_url.split(',').map(url => url.trim()); 
-      const textMessage = {
-          type: 'text',
-          text: `📌 ${flow.flow_name}\n\n${flow.flow_description}`
-      };
+    if (Flowchart.length > 0) {
+        const flowchartList = Flowchart.map(flow => 
+            `📌${flow.flow_name}\n${flow.flow_description}`
+        ).join('\n\n');
 
-      const imageMessages = imageUrls.map(url => ({
-          type: 'image',
-          originalContentUrl: url,
-          previewImageUrl: url
-      }));
+        const flowImages = Flowchart.map(flow => {
+            const urls = flow.flow_url.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: flowchartList }, 
+            ...flowImages 
+        ];
 
-      await client.replyMessage(event.replyToken, [textMessage, ...imageMessages]);
-      return { status: 'Success', response: flow.flow_name };
-  } else {
-      await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-      return { status: 'No' };
-  }
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: flowchartList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
