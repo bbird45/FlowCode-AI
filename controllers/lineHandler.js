@@ -2095,7 +2095,7 @@ if (matchedIntent.intent_name === 'pseudoId28') {
                                 height: 'sm',
                                 action: {
                                     type: 'uri',
-                                    label: 'ข้อสอบ',  // ปรับให้มีไอคอน
+                                    label: 'กดที่นี่เพื่อทำข้อสอบ',  // ปรับให้มีไอคอน
                                     uri: quiz.Quiz_link
                                 }
                             }
