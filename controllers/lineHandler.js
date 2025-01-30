@@ -2051,23 +2051,75 @@ if (matchedIntent.intent_name === 'pseudoId28') {
 }
       
 //-----------------------------------------------------------------------------------------------------------------------------
+    //   if (matchedIntent.intent_name === 'quiz') {
+    //     const quizion = await getQuizFromDB();
+        
+    //     const Quiz = quizion.filter(quiz => quiz.Quiz_id && quiz.Quiz_id);
+      
+    //     if (quizion.length > 0) {
+    //       const quizList = Quiz.map(quiz => 
+    //           `📝 ${quiz.Quiz_name}\n🔗 ${quiz.Quiz_link}\n───── ⋆⋅☆⋅⋆ ─────`
+    //       ).join('\n\n');
+      
+    //       await client.replyMessage(event.replyToken, { type: 'text', text: quizList });
+    //       return { status: 'Success', response: quizList };
+    //     } else {
+    //       await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+    //       return { status: 'No' };
+    //     }
+    //   }
+
       if (matchedIntent.intent_name === 'quiz') {
         const quizion = await getQuizFromDB();
-        
+    
+        // กรองข้อมูลที่ต้องการ
         const Quiz = quizion.filter(quiz => quiz.Quiz_id && quiz.Quiz_id);
-      
-        if (quizion.length > 0) {
-          const quizList = Quiz.map(quiz => 
-              `📝 ${quiz.Quiz_name}\n🔗 ${quiz.Quiz_link}\n───── ⋆⋅☆⋅⋆ ─────`
-          ).join('\n\n');
-      
-          await client.replyMessage(event.replyToken, { type: 'text', text: quizList });
-          return { status: 'Success', response: quizList };
+    
+        if (Quiz.length > 0) {
+            const flexMessage = {
+                type: 'bubble',
+                body: {
+                    type: 'box',
+                    layout: 'vertical',
+                    contents: Quiz.map(quiz => ({
+                        type: 'box',
+                        layout: 'horizontal',
+                        contents: [
+                            {
+                                type: 'text',
+                                text: quiz.Quiz_name,
+                                weight: 'bold',
+                                size: 'lg'
+                            },
+                            {
+                                type: 'button',
+                                style: 'primary',
+                                action: {
+                                    type: 'uri',
+                                    label: 'เข้าสู่ระบบ',  // คำที่แสดงในปุ่ม
+                                    uri: quiz.Quiz_link  // ลิงก์ที่แตกต่างกัน
+                                }
+                            }
+                        ]
+                    }))
+                }
+            };
+    
+            await client.replyMessage(event.replyToken, [
+                {
+                    type: 'flex',
+                    altText: 'เลือกคำถามเพื่อเข้าสู่ระบบ',
+                    contents: flexMessage
+                }
+            ]);
+    
+            return { status: 'Success', response: 'Quick Reply Sent' };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+            return { status: 'No' };
         }
-      }
+    }
+    
 
       if (matchedIntent.intent_name === 'quizId1') {
         const quizion = await getQuizFromDB();
@@ -2213,19 +2265,19 @@ if (matchedIntent.intent_name === 'admin') {
     const Admin = admin.filter(ad => ad.admin_id && ad.admin_id === 1);
 
     if (Admin.length > 0) {
-        const ad = Admin[0]; // Assuming you only want the first admin
+        const ad = Admin[0]; 
 
         await client.replyMessage(event.replyToken, {
             type: 'text',
-            text: `${ad.admin_name}`,
+            text: `📌${ad.admin_name}\nคลิกเข้าสู่ระบบเพื่อเข้าเว็บไซต์จัดการข้อมูล`,
             quickReply: {
                 items: [
                     {
                         type: 'action',
                         action: {
                             type: 'uri',
-                            label: 'คลิกที่นี่เพื่อเข้าสู่ระบบ',
-                            uri: ad.admin_url // admin_url is the link you want the user to open
+                            label: 'เข้าสู่ระบบ',
+                            uri: ad.admin_url 
                         }
                     }
                 ]
@@ -2238,8 +2290,6 @@ if (matchedIntent.intent_name === 'admin') {
         return { status: 'No' };
     }
 }
-
-
 
 //-------------------------------------------------------------------------------------------------------------
         if (matchedIntent.intent_name === 'คำถามที่พบบ่อย') {
