@@ -1538,23 +1538,27 @@ if (matchedIntent.intent_name === 'pseudoId1') {
         }
       }
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId17') {
-        const pseudocode = await getPseudocodeFromDB();
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 17);
-      
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `${pseudo.Pseudo_description}`
-          ).join('\n\n');
-      
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+if (matchedIntent.intent_name === 'pseudoId17') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 17);
+
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_description}`
+        ).join('\n\n');
+
+        const messages = {
+            type: 'text',
+            text: pseudocodeList
+        };
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
 //-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'pseudoId18') {
@@ -1872,8 +1876,8 @@ if (matchedIntent.intent_name === 'pseudoId1') {
 //-------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'คำแนะนำ') {
 const messageText = `✨ คำแนะนำ
-🔍พิมพ์ค้นหาอย่างไร? นี้คือตัวอย่างการพิมพ์คำค้นหา
-🔍ค้นหารหัสเทียม\n"พิมพ์ว่า รหัสเทียม"\n🔍ค้นหาประโยชน์ของรหัสเทียม\n "พิมพ์ว่า ประโยชน์รหัสเทียม"\n🔍ค้นหาหลักการเขียนรหัสเทียม\n "พิมพ์ว่า หลักการรหัสเทียม"\n🔍ค้นหาตัวอย่างรหัสเทียม\n "พิมพ์ว่า ตัวอย่างรหัสเทียม"\n🔍ค้นหาความหมายรหัสเทียม\n "พิมพ์ว่า ความหมายรหัสเทียม"\n🔍ต้องการค้นหาผังงาน\n "พิมพ์ว่า ผังงาน"\n🔍ค้นหาประโยชน์ของผังงาน\n "พิมพ์ว่า ประโยชน์ผังงาน"\n🔍ค้นหาสัญลักษณ์ในผังงาน\n "พิมพ์ว่า สัญลักษณ์ผังงาน"\n🔍ค้นหาตัวอย่างผังงาน\n "พิมพ์ว่า ตัวอย่างผังงาน"\n🔍ค้นหา Start/Terminator\n "พิมพ์ว่า Start"\n
+🔍พิมพ์ค้นหาอย่างไร? นี้คือตัวอย่างการพิมพ์คำค้นหา\n
+🔍ค้นหารหัสเทียม\n"พิมพ์ว่า รหัสเทียม"\n🔍ค้นหาประโยชน์ของรหัสเทียม\n "พิมพ์ว่า ประโยชน์รหัสเทียม"\n🔍ค้นหาตัวอย่างรหัสเทียม\n "พิมพ์ว่า ตัวอย่างรหัสเทียม"\n🔍ต้องการค้นหาผังงาน\n "พิมพ์ว่า ผังงาน"\n🔍ค้นหาประโยชน์ของผังงาน\n "พิมพ์ว่า ประโยชน์ผังงาน"\n🔍ค้นหาสัญลักษณ์ในผังงาน\n "พิมพ์ว่า สัญลักษณ์ผังงาน"\n
 นี้คือการค้นหาเบื้องต้นที่พบบ่อย `;
 await client.replyMessage(event.replyToken, { type: 'text', text: messageText });
 return { status: 'Success', response: messageText };
