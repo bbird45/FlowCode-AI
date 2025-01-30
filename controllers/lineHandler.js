@@ -1277,7 +1277,7 @@ if (matchedIntent.intent_name === 'pseudoId2') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1307,7 +1307,7 @@ if (matchedIntent.intent_name === 'pseudoId3') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1337,7 +1337,7 @@ if (matchedIntent.intent_name === 'pseudoId4') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1367,7 +1367,7 @@ if (matchedIntent.intent_name === 'pseudoId5') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1397,7 +1397,7 @@ if (matchedIntent.intent_name === 'pseudoId6') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1427,7 +1427,7 @@ if (matchedIntent.intent_name === 'pseudoId7') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1457,7 +1457,7 @@ if (matchedIntent.intent_name === 'pseudoId8') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1487,7 +1487,7 @@ if (matchedIntent.intent_name === 'pseudoId9') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1517,7 +1517,7 @@ if (matchedIntent.intent_name === 'pseudoId10') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1547,7 +1547,7 @@ if (matchedIntent.intent_name === 'pseudoId11') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1577,7 +1577,7 @@ if (matchedIntent.intent_name === 'pseudoId12') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1662,7 +1662,7 @@ if (matchedIntent.intent_name === 'pseudoId14') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1846,7 +1846,7 @@ if (matchedIntent.intent_name === 'pseudoId19') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1876,7 +1876,7 @@ if (matchedIntent.intent_name === 'pseudoId20') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1906,7 +1906,7 @@ if (matchedIntent.intent_name === 'pseudoId21') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1936,7 +1936,7 @@ if (matchedIntent.intent_name === 'pseudoId22') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1966,7 +1966,7 @@ if (matchedIntent.intent_name === 'pseudoId23') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1996,7 +1996,7 @@ if (matchedIntent.intent_name === 'pseudoId24') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -2025,7 +2025,7 @@ if (matchedIntent.intent_name === 'pseudoId25') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -2055,7 +2055,7 @@ if (matchedIntent.intent_name === 'pseudoId26') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -2085,7 +2085,7 @@ if (matchedIntent.intent_name === 'pseudoId27') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -2115,7 +2115,7 @@ if (matchedIntent.intent_name === 'pseudoId28') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `📌${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
