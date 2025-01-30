@@ -2460,6 +2460,13 @@ if (matchedIntent.intent_name === 'quizId24') {
             type: 'carousel',
             contents: Quiz.map(quiz => ({
                 type: 'bubble',
+                hero: {  // ใช้ hero เพื่อให้รูปแสดงเต็มขอบ
+                    type: 'image',
+                    url: quiz.Quiz_img,  // ใส่ URL รูปภาพ
+                    size: 'full',        // ทำให้ขนาดรูปใหญ่สุด
+                    aspectRatio: '16:9', // กำหนดอัตราส่วนภาพ
+                    aspectMode: 'cover'  // แสดงเต็มโดยไม่มีขอบขาว
+                },
                 body: {
                     type: 'box',
                     layout: 'vertical',
@@ -2467,18 +2474,11 @@ if (matchedIntent.intent_name === 'quizId24') {
                     contents: [
                         {
                             type: 'text',
-                            text: quiz.Quiz_name,  // แสดงชื่อข้อสอบเป็นอันดับแรก
+                            text: quiz.Quiz_name,  // ชื่อข้อสอบ
                             weight: 'bold',
                             size: 'lg',
                             wrap: true,
                             align: 'center'
-                        },
-                        {
-                            type: 'image',
-                            url: quiz.Quiz_img,  // แสดงรูปภาพรองลงมา
-                            size: 'full',
-                            aspectRatio: '16:9',
-                            aspectMode: 'cover'
                         },
                         {
                             type: 'button',
@@ -2509,6 +2509,7 @@ if (matchedIntent.intent_name === 'quizId24') {
         return { status: 'No' };
     }
 }
+
 
 
 //-----------------------------------------------------------------------------------------------------------------------------
