@@ -1824,21 +1824,13 @@ if (matchedIntent.intent_name === 'pseudoId18') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+            `${pseudo.Pseudo_description}`
         ).join('\n\n');
 
-        const pseudoImages = Pseudocode.map(pseudo => {
-            const urls = pseudo.Pseudo_URL.split(',');  
-            return urls.map(url => ({
-                type: 'image',
-                originalContentUrl: url.trim(), 
-                previewImageUrl: url.trim() 
-            }));
-        }).flat(); 
-        const messages = [
-            { type: 'text', text: pseudocodeList }, 
-            ...pseudoImages 
-        ];
+        const messages = {
+            type: 'text',
+            text: pseudocodeList
+        };
 
         await client.replyMessage(event.replyToken, messages);
         return { status: 'Success', response: pseudocodeList };
