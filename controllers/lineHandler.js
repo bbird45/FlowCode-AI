@@ -1321,26 +1321,35 @@ if (matchedIntent.intent_name === 'pseudoId3') {
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId4') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หาประโยชน์ของการเขียนรหัสเทียม
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 4);
+if (matchedIntent.intent_name === 'pseudoId4') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 4);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `💡 ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
+        ).join('\n\n');
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+        const pseudoImages = Pseudocode.map(pseudo => {
+            const urls = pseudo.Pseudo_URL.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: pseudocodeList }, 
+            ...pseudoImages 
+        ];
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
-
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 //-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'pseudoId5') {
         const pseudocode = await getPseudocodeFromDB();
