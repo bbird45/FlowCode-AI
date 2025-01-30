@@ -1271,25 +1271,35 @@ if (matchedIntent.intent_name === 'pseudoId1') {
   }
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId2') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หาความหมายรหัสเทียม
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 2);
+if (matchedIntent.intent_name === 'pseudoId2') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 2);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `📄 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+        ).join('\n\n');
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+        const pseudoImages = Pseudocode.map(pseudo => {
+            const urls = pseudo.Pseudo_URL.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: pseudocodeList }, 
+            ...pseudoImages 
+        ];
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
 if (matchedIntent.intent_name === 'pseudoId3') {  
     const pseudocode = await getPseudocodeFromDB();
@@ -1297,7 +1307,7 @@ if (matchedIntent.intent_name === 'pseudoId3') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1327,7 +1337,7 @@ if (matchedIntent.intent_name === 'pseudoId4') {
 
     if (Pseudocode.length > 0) {
         const pseudocodeList = Pseudocode.map(pseudo => 
-            `${pseudo.Pseudo_name}\n${pseudo.Pseudo_description}`
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
         ).join('\n\n');
 
         const pseudoImages = Pseudocode.map(pseudo => {
@@ -1350,165 +1360,246 @@ if (matchedIntent.intent_name === 'pseudoId4') {
         return { status: 'No' };
     }
 }
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId5') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หาหลักในการเขียนรหัสเทียม
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 5);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `⚖️ ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+if (matchedIntent.intent_name === 'pseudoId5') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 5);
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+        ).join('\n\n');
+
+        const pseudoImages = Pseudocode.map(pseudo => {
+            const urls = pseudo.Pseudo_URL.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: pseudocodeList }, 
+            ...pseudoImages 
+        ];
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId6') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หาพื้นฐานการเขียนรหัสเทียม
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 6);
+if (matchedIntent.intent_name === 'pseudoId6') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 6);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `📚 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+        ).join('\n\n');
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+        const pseudoImages = Pseudocode.map(pseudo => {
+            const urls = pseudo.Pseudo_URL.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: pseudocodeList }, 
+            ...pseudoImages 
+        ];
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId7') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หาการกำหนดค่า
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 7);
+if (matchedIntent.intent_name === 'pseudoId7') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 7);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `⚙️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+        ).join('\n\n');
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+        const pseudoImages = Pseudocode.map(pseudo => {
+            const urls = pseudo.Pseudo_URL.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: pseudocodeList }, 
+            ...pseudoImages 
+        ];
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId8') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หาการคำนวณ
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 8);
+if (matchedIntent.intent_name === 'pseudoId8') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 8);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `🧮 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+        ).join('\n\n');
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+        const pseudoImages = Pseudocode.map(pseudo => {
+            const urls = pseudo.Pseudo_URL.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: pseudocodeList }, 
+            ...pseudoImages 
+        ];
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId9') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หาการรับข้อมูลเข้า
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 9);
+if (matchedIntent.intent_name === 'pseudoId9') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 9);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `⌨️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+        ).join('\n\n');
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+        const pseudoImages = Pseudocode.map(pseudo => {
+            const urls = pseudo.Pseudo_URL.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: pseudocodeList }, 
+            ...pseudoImages 
+        ];
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId10') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หาการแสดงผลข้อมูล
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 10);
+if (matchedIntent.intent_name === 'pseudoId10') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 10);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `👁️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+        ).join('\n\n');
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+        const pseudoImages = Pseudocode.map(pseudo => {
+            const urls = pseudo.Pseudo_URL.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: pseudocodeList }, 
+            ...pseudoImages 
+        ];
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId11') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หากลุ่มของคำสั่ง
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 11);
+if (matchedIntent.intent_name === 'pseudoId11') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 11);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `📂 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+        ).join('\n\n');
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+        const pseudoImages = Pseudocode.map(pseudo => {
+            const urls = pseudo.Pseudo_URL.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: pseudocodeList }, 
+            ...pseudoImages 
+        ];
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId12') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หาการตัดสินใจทางเลือก
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 12);
+if (matchedIntent.intent_name === 'pseudoId12') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 12);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `🔀 ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+        ).join('\n\n');
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+        const pseudoImages = Pseudocode.map(pseudo => {
+            const urls = pseudo.Pseudo_URL.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: pseudocodeList }, 
+            ...pseudoImages 
+        ];
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
 if (matchedIntent.intent_name === 'pseudoId13') {
     const pseudocode = await getPseudocodeFromDB();
@@ -1565,25 +1656,35 @@ if (matchedIntent.intent_name === 'pseudoId13') {
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId14') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หาการเรียกโปรแกรมย่อยและกระโดดข้าม
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 14);
+if (matchedIntent.intent_name === 'pseudoId14') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 14);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `➡️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+        ).join('\n\n');
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+        const pseudoImages = Pseudocode.map(pseudo => {
+            const urls = pseudo.Pseudo_URL.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: pseudocodeList }, 
+            ...pseudoImages 
+        ];
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
 if (matchedIntent.intent_name === 'pseudoId15') {
     const pseudocode = await getPseudocodeFromDB();
@@ -1717,41 +1818,65 @@ if (matchedIntent.intent_name === 'pseudoId17') {
     }
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId18') {
-        const pseudocode = await getPseudocodeFromDB();
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 18);
-      
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `${pseudo.Pseudo_description}`
-          ).join('\n\n');
-      
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
-        } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+if (matchedIntent.intent_name === 'pseudoId18') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 18);
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId19') {
-        const pseudocode = await getPseudocodeFromDB();
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 19);
-      
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `⚙️ ${pseudo.Pseudo_name}\n📖 ${pseudo.Pseudo_description}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
-      
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+        ).join('\n\n');
+
+        const pseudoImages = Pseudocode.map(pseudo => {
+            const urls = pseudo.Pseudo_URL.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: pseudocodeList }, 
+            ...pseudoImages 
+        ];
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
         } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
-        }
-      }
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
+
+if (matchedIntent.intent_name === 'pseudoId19') {  
+    const pseudocode = await getPseudocodeFromDB();
+    const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 19);
+
+    if (Pseudocode.length > 0) {
+        const pseudocodeList = Pseudocode.map(pseudo => 
+            `${pseudo.Pseudo_name}\n\n${pseudo.Pseudo_description}`
+        ).join('\n\n');
+
+        const pseudoImages = Pseudocode.map(pseudo => {
+            const urls = pseudo.Pseudo_URL.split(',');  
+            return urls.map(url => ({
+                type: 'image',
+                originalContentUrl: url.trim(), 
+                previewImageUrl: url.trim() 
+            }));
+        }).flat(); 
+        const messages = [
+            { type: 'text', text: pseudocodeList }, 
+            ...pseudoImages 
+        ];
+
+        await client.replyMessage(event.replyToken, messages);
+        return { status: 'Success', response: pseudocodeList };
+        } else {
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+        return { status: 'No' };
+    }
+}
 
 //-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'pseudoId20') {
