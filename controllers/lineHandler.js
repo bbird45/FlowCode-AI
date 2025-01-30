@@ -2072,58 +2072,53 @@ if (matchedIntent.intent_name === 'pseudoId28') {
     if (matchedIntent.intent_name === 'quiz') {
         const quizion = await getQuizFromDB();
     
-        // กรองข้อมูลที่ต้องการ
-        const Quiz = quizion.filter(quiz => quiz.Quiz_id && quiz.Quiz_id);
-    
-        if (Quiz.length > 0) {
+        if (quizion.length > 0) {
             const flexMessage = {
-                type: 'bubble',
-                body: {
-                    type: 'box',
-                    layout: 'vertical',
-                    spacing: 'md',
-                    contents: Quiz.map(quiz => ({
+                type: 'carousel', // ใช้ carousel เพื่อแสดงหลายข้อสอบ
+                contents: quizion.map(quiz => ({
+                    type: 'bubble',
+                    body: {
                         type: 'box',
-                        layout: 'horizontal',
+                        layout: 'vertical',
                         spacing: 'md',
                         contents: [
                             {
                                 type: 'text',
-                                text: quiz.Quiz_name,
+                                text: `${quiz.Quiz_name}`,
                                 weight: 'bold',
-                                size: 'md',
-                                flex: 3
+                                size: 'lg',
+                                wrap: true
                             },
                             {
                                 type: 'button',
-                                style: 'link',  // ปรับเป็นลิงก์เพื่อให้ปุ่มเล็กลง
-                                height: 'sm',  // ลดขนาดของปุ่ม
+                                style: 'link',  // ใช้ปุ่มลิงก์เพื่อให้เล็กลง
+                                height: 'sm',
                                 action: {
                                     type: 'uri',
-                                    label: 'เข้าสอบ',  // ทำให้ดูเล็กลงโดยใช้ไอคอน
+                                    label: 'ข้อสอบ',  // ปรับให้มีไอคอน
                                     uri: quiz.Quiz_link
-                                },
-                                flex: 1
+                                }
                             }
                         ]
-                    }))
-                }
+                    }
+                }))
             };
     
             await client.replyMessage(event.replyToken, [
                 {
                     type: 'flex',
-                    altText: 'เลือกคำถามเพื่อเข้าสู่ระบบ',
+                    altText: 'เลือกข้อสอบที่ต้องการทำ',
                     contents: flexMessage
                 }
             ]);
     
             return { status: 'Success', response: 'Flex Message Sent' };
         } else {
-            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+            await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อสอบ' });
             return { status: 'No' };
         }
     }
+    
     
     
 
