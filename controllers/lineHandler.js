@@ -2213,41 +2213,32 @@ if (matchedIntent.intent_name === 'admin') {
     const Admin = admin.filter(ad => ad.admin_id && ad.admin_id === 1);
 
     if (Admin.length > 0) {
-        const adminList = Admin.map(ad => 
-            `${ad.admin_name}`
-        ).join('\n');
+        const ad = Admin[0]; // Assuming you only want the first admin
 
-        await client.replyMessage(event.replyToken, [
-            {
-                type: 'flex',
-                altText: 'ข้อมูลแอดมิน',
-                contents: {
-                    type: 'bubble',
-                    body: {
-                        type: 'box',
-                        layout: 'vertical',
-                        contents: Admin.map(ad => ({
-                            type: 'text',
-                            text: ad.admin_name,
-                            weight: 'bold',
-                            size: 'lg'
-                        })).concat(Admin.map(ad => ({
-                            type: 'text',
-                            text: `🔗 ${ad.admin_url}`,
-                            size: 'md',
-                            wrap: true
-                        })))
+        await client.replyMessage(event.replyToken, {
+            type: 'text',
+            text: `${ad.admin_name}`,
+            quickReply: {
+                items: [
+                    {
+                        type: 'action',
+                        action: {
+                            type: 'uri',
+                            label: 'คลิกที่นี่เพื่อเข้าสู่ระบบ',
+                            uri: ad.admin_url // admin_url is the link you want the user to open
+                        }
                     }
-                }
+                ]
             }
-        ]);
+        });
 
-        return { status: 'Success', response: adminList };
+        return { status: 'Success', response: 'Quick Reply Sent' };
     } else {
         await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
         return { status: 'No' };
     }
 }
+
 
 
 //-------------------------------------------------------------------------------------------------------------
