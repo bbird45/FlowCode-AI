@@ -2452,7 +2452,6 @@ if (matchedIntent.intent_name === 'quizId13') {
 }
 
 if (matchedIntent.intent_name === 'quizId24') {
-
     const quizion = await getQuizFromDB();
     const Quiz = quizion.filter(quiz => quiz.Quiz_id === 2 || quiz.Quiz_id === 4);
 
@@ -2468,10 +2467,18 @@ if (matchedIntent.intent_name === 'quizId24') {
                     contents: [
                         {
                             type: 'text',
-                            text: `${quiz.Quiz_name}`,
+                            text: quiz.Quiz_name,  // แสดงชื่อข้อสอบเป็นอันดับแรก
                             weight: 'bold',
                             size: 'lg',
-                            wrap: true
+                            wrap: true,
+                            align: 'center'
+                        },
+                        {
+                            type: 'image',
+                            url: quiz.Quiz_img,  // แสดงรูปภาพรองลงมา
+                            size: 'full',
+                            aspectRatio: '16:9',
+                            aspectMode: 'cover'
                         },
                         {
                             type: 'button',
@@ -2479,7 +2486,7 @@ if (matchedIntent.intent_name === 'quizId24') {
                             height: 'sm',
                             action: {
                                 type: 'uri',
-                                label: 'กดที่นี่เพื่อทำข้อสอบ',  
+                                label: '📖 กดที่นี่เพื่อทำข้อสอบ',  
                                 uri: quiz.Quiz_link
                             }
                         }
@@ -2502,6 +2509,7 @@ if (matchedIntent.intent_name === 'quizId24') {
         return { status: 'No' };
     }
 }
+
 
 //-----------------------------------------------------------------------------------------------------------------------------
 if (matchedIntent.intent_name === 'admin') {
