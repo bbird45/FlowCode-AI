@@ -1498,25 +1498,60 @@ if (matchedIntent.intent_name === 'pseudoId1') {
         }
       }
 
-//-----------------------------------------------------------------------------------------------------------------------------
-      if (matchedIntent.intent_name === 'pseudoId15') {
-        const pseudocode = await getPseudocodeFromDB();
-        
-        // ฟิลเตอร์หาตัวอย่างการเขียนรหัสเทียม
-        const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 15);
+if (matchedIntent.intent_name === 'pseudoId15') {
+const pseudocode = await getPseudocodeFromDB();
+const Pseudocode = pseudocode.filter(pseudo => pseudo.Pseudo_id && pseudo.Pseudo_id === 15);
 
-        if (pseudocode.length > 0) {
-          const pseudocodeList = Pseudocode.map(pseudo => 
-              `📄 ${pseudo.Pseudo_name}\n🔗 ${pseudo.Pseudo_URL}`
-          ).join('\n\n');
+if (Pseudocode.length > 0) {
+    const pseudo = Pseudocode[0]; 
 
-          await client.replyMessage(event.replyToken, { type: 'text', text: pseudocodeList });
-          return { status: 'Success', response: pseudocodeList };
-        } else {
-          await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
-          return { status: 'No' };
+    await client.replyMessage(event.replyToken, {
+        type: 'flex',
+        altText: 'ตัวอย่างการเขียนรหัสเทียม',
+        contents: {
+            type: 'bubble',
+            body: {
+                type: 'box',
+                layout: 'vertical',
+                contents: [
+                    {
+                        type: 'text',
+                        text: `${pseudo.Pseudo_name}`,
+                        weight: 'bold',
+                        size: 'lg'
+                    },
+                    {
+                        type: 'text',
+                        text: `${pseudo.Pseudo_description}`,
+                        size: 'md',
+                        wrap: true
+                    }
+                ]
+            },
+            footer: {
+                type: 'box',
+                layout: 'vertical',
+                contents: [
+                    {
+                        type: 'button',
+                        action: {
+                            type: 'uri',
+                            label: 'ข้อมูลเพิ่มเติม',
+                            uri: pseudo.Pseudo_URL 
+                        },
+                        height: 'sm'
+                    }
+                ]
+            }
         }
-      }
+    });
+
+    return { status: 'Success', response: 'Flex Message Sent' };
+    } else {
+        await client.replyMessage(event.replyToken, { type: 'text', text: 'ไม่พบข้อมูล' });
+    return { status: 'No' };
+ }
+}
 
 //-----------------------------------------------------------------------------------------------------------------------------
       if (matchedIntent.intent_name === 'pseudoId16') {
